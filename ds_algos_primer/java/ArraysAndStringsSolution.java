@@ -76,7 +76,6 @@ public class ArraysAndStringsSolution {
         // each of these explicitly and just go back and forth between doing one
         // and the other
         while (true) {
-
             // Go up to the right
             while (row > 0 && col < arr[0].length-1) {
                 System.out.println(arr[row][col]);
@@ -120,8 +119,8 @@ public class ArraysAndStringsSolution {
         // use a char[] and convert it to a string
         StringBuilder sb = new StringBuilder();
 
-        // Increment by 2 each time to only visit even characters
-        for (int i = 0; i < s.length(); i=i+2) {
+        // Increment by 2 each time to only visit odd indices
+        for (int i = 1; i < s.length(); i=i+2) {
             sb.append(s.charAt(i));
         }
 
