@@ -1,9 +1,9 @@
 /*
  *   Title: ArraysAndStrings
  *
- *   This file contains the solutions for the Arrays and Strings exercises in
- *   the DS & Algos Primer. If you have not already attempted these exercises,
- *   we highly recommend you complete them before reviewing the solutions here.
+ *   This file contains the template for the Arrays and Strings exercises in
+ *   the DS & Algos Primer. Fill in the exercises here and refer to
+ *   ArraysAndStringsSolution.java for the complete code samples.
  *
  *   Execution: javac ArraysAndStrings.java && java -ea ArraysAndStrings
  */
@@ -15,119 +15,93 @@ public class ArraysAndStrings {
     // Exercise 1.1: Write a function that takes an integer array and reverses
     // the values in place
     public static void reverseArray(int[] arr) {
-        // We will iterate to the midpoint of the array. For each value, we can
-        // get the index its supposed to swap with by computing arr.length-i-1
-        for (int i = 0; i < arr.length/2; i++) {
-            int temp = arr[i];
-            arr[i] = arr[arr.length-i-1];
-            arr[arr.length-i-1] = temp;
-        }
+        // INSERT YOUR SOLUTION HERE
     }
 
     // Exercise 1.2: Given a 2D matrix, write a function to print the values in
     // the matrix in a clockwise spiral from outside to inside
     public static void printSpiral(int[][] arr) {
-        // We need to keep track of the boundaries of the current layer of the
-        // spiral that we are traversing
-        int minRow = 0;
-        int minCol = 0;
-        int maxRow = arr.length-1;
-        int maxCol = arr[0].length-1;
-
-        // Once the mins and maxes converge, we are at the center of the spiral.
-        // The spiral follows a fixed set of steps. We go left, down, right, up.
-        // For each of these, we just interate to the bounds, so we express each
-        // one explicitly.
-        while (minRow < maxRow && minCol < maxCol) {
-            // Go across the top
-            for (int col = minCol; col <= maxCol; col++) {
-                System.out.println(arr[minRow][col]);
-            }
-            minRow++;
-
-            // Go down the right side
-            for (int row = minRow ; row <= maxRow; row++) {
-                System.out.println(arr[row][maxCol]);
-            }
-            maxCol--;
-
-            // Go across the bottom
-            for (int col = maxCol; col >= minCol; col--) {
-                System.out.println(arr[maxRow][col]);
-            }
-            maxRow--;
-
-            // Go up the left side
-            for (int row = maxRow; row >= minRow; row--) {
-                System.out.println(arr[row][minCol]);
-            }
-            minCol++;
-        }
+        // INSERT YOUR SOLUTION HERE
     }
 
     // Exercise 1.3: Given a 2D matrix, write a function to print the values in
     // the matrix in a zig-zag order
-    public static void printZigZag(int[][] arr) {
-        int row = 0;
-        int col = 0;
-
-        // Like the spiral, we have clearly defined directions we need to go. In
-        // this case we either go up to the right or down to the left. We define
-        // each of these explicitly and just go back and forth between doing one
-        // and the other
-        while (true) {
-
-            // Go up to the right
-            while (row > 0 && col < arr[0].length-1) {
-                System.out.println(arr[row][col]);
-                row--;
-                col++;
-            }
-            // Without this we won't print the final value in the diagonal
-            System.out.println(arr[row][col]);
-
-            // Check whether we're at the bottom right corner
-            if (row == arr.length-1 && col == arr[0].length-1) break;
-
-            // We need to update our positiion differently depending on whether
-            // we're still going along the top of the matrix or down the
-            // righthand side
-            else if (col+1 < arr[0].length) col++;
-            else row++;
-
-            // Go down to the left
-            while (row < arr.length-1 && col > 0) {
-                System.out.println(arr[row][col]);
-                row++;
-                col--;
-            }
-            // Without this we won't print the final value in the diagonal
-            System.out.println(arr[row][col]);
-
-            // Check whether we're at the bottom right corner
-            if (row == arr.length-1 && col == arr[0].length-1) break;
-
-            // Are we going along the lefthand side or the bottom?
-            else if (row+1 < arr.length) row++;
-            else col++;
-        }
+    public static void printDiagonals(int[][] arr) {
+        // INSERT YOUR SOLUTION HERE
     }
+
+    // Exercise 1.4: Write a function that takes in a string and removes every
+    // even-indexed character
+    public static String removeEven(String s) {
+        // INSERT YOUR SOLUTION HERE
+    }
+
+    // Exercises 1.5: Zig Zag Conversion
+    // Full Problem Definition: https://leetcode.com/problems/zigzag-conversion/
+    public static String zigZag(String s, int numRows) {
+        // INSERT YOUR SOLUTION HERE
+    }
+
+    // Exercise 2.1: Given a string, print out all of the substrings
+    public static void printSubstrings(String s) {
+        // INSERT YOUR SOLUTION HERE
+    }
+
+    // Exercise 2.2: Write a function to find all duplicates in an array. The
+    // array will contain exactly 1 duplicated value
+    public static int findDuplicates(int[] arr) {
+        // INSERT YOUR SOLUTION HERE
+    }
+
+    // Exercise 2.3: Given a sorted array, find every pair of values in the
+    // array that sum up to a given target
+    public static int[][] twoSum(int[] arr, int target) {
+        // INSERT YOUR SOLUTION HERE
+    }
+
+    // Exercise 3.1: Given two arrays, compare them to see if they are equal
+    public static boolean arraysAreEqual(int[] arr1, int[] arr2) {
+        // INSERT YOUR SOLUTION HERE
+    }
+
+    // Exercise 3.2: Given two strings, determine if one string is the reverse
+    // of the other string
+    public static boolean stringsAreOpposite(String s1, String s2) {
+        // INSERT YOUR SOLUTION HERE
+    }
+
+    // Exercise 3.3: Given two strings, determine whether they are anagrams of
+    // each other
+    public static boolean areAnagrams(String s1, String s2) {
+        // INSERT YOUR SOLUTION HERE
+    }
+
+    // Exercise 4.1: Given an array, compute the sum of each length-k subarray
+    public static int[] subarraySums(int[] arr, int k) {
+        // INSERT YOUR SOLUTION HERE
+    }
+
+    // Exercise 4.2: Given a string, find the longest substring of the string
+    // that does not contain any repeated characters
+    public static int noRepeatedChars(String s) {
+        // INSERT YOUR SOLUTION HERE
+    }
+
+    // Exercise 4.3: Given two strings, s and p, find all occurrences of
+    // anagrams of p in s. The output is the starting index of each anagram
+    public static List<Integer> findAllAnagrams(String s, String p) {
+        // INSERT YOUR SOLUTION HERE
+    }
+
+    // Exercise 4.4: Given two strings, s and p, find the smallest substring of
+    // s that contains all the characters in p
+    public static String smallestSubstring(String s, String p) {
+        // INSERT YOUR SOLUTION HERE
+    }
+
 
     // Sample test cases
     public static void main(String[] args) {
-        int[] toReverse = new int[]{1,2,3,4,5};
-        reverseArray(toReverse);
-        System.out.println(Arrays.toString(toReverse));
-
-        int[][] matrix = new int[4][5];
-        int val = 1;
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix[0].length; j++) {
-                matrix[i][j] = val++;
-            }
-        }
-        printSpiral(matrix);
-
-        printZigZag(matrix);
+        // ADD YOUR TEST CASES HERE
     }
 }
