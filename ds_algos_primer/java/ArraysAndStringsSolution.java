@@ -247,7 +247,7 @@ public class ArraysAndStringsSolution {
         // reverse one of the strings and compare them, but that takes extra
         // space whereas this does not
         for (int i = 0; i < s1.length(); i++) {
-            if (s1.charAt(i) != s2.charAt(s1.length()-i-1)) return false;
+            if (s1.charAt(i) != s2.charAt(s2.length()-i-1)) return false;
         }
 
         return true;
@@ -367,7 +367,7 @@ public class ArraysAndStringsSolution {
 
             // If we have the exact right number of occurrences of the character
             // AND the substring is the right length, then this is a valid
-            // substring.
+            // substring
             if (chars[rightChar] == 0 && right-left == p.length()) result.add(left);
         }
 
