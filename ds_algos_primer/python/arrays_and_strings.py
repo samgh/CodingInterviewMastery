@@ -126,35 +126,4 @@ def smallest_substring(s: str, p: str) -> str:
 
 # Sample test cases
 if __name__ == '__main__':
-    l = [1,2,3,4]
-    reverse_array(l)
-    print(l)
-
-    matrix = [[1,2,3,4,5],[6,7,8,9,10],[11,12,13,14,15],[16, 17,18,19,20]]
-    print_spiral(matrix)
-
-    print_diagonals(matrix)
-
-    print(remove_even("abcdef"))
-
-    print(zig_zag("PAYPALISHIRING", 3))
-
-    print_substrings("abcde")
-
-    print(find_duplicates([1,2,3,4,3,5]))
-
-    print(two_sum([1,2,2,2,3,4,5,6,6,6], 8))
-
-    print(arrays_are_equal([1,2,3,4], [1,2,3,4]))
-
-    print(strings_are_opposite("abcd", "dcba"))
-
-    print(are_anagrams("abcd", "cdab"))
-
-    print(subarray_sums([1,2,3,4,5], 3))
-
-    print(no_repeated_chars("abcdbea"))
-
-    print(find_all_anagrams("cbaebabacd", "abc"))
-
-    print(smallest_substring("aabbccdd", "abc"))
+    # INSERT YOUR TESTS HERE

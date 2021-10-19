@@ -1,16 +1,16 @@
 /*
- *   Title: ArraysAndStringsSolution
+ *   Title: ArraysAndStringsSolutions
  *
  *   This file contains the solutions for the Arrays and Strings exercises in
  *   the DS & Algos Primer. If you have not already attempted these exercises,
  *   we highly recommend you complete them before reviewing the solutions here.
  *
- *   Execution: javac ArraysAndStringsSolution.java && java -ea ArraysAndStringsSolution
+ *   Execution: javac ArraysAndStringsSolutions.java && java -ea ArraysAndStringsSolutions
  */
 
 import java.util.*;
 
-public class ArraysAndStringsSolution {
+public class ArraysAndStringsSolutions {
 
     // Exercise 1.1: Write a function that takes an integer array and reverses
     // the values in place
