@@ -3,7 +3,7 @@
  *
  *   This file contains the template for the Arrays and Strings exercises in
  *   the DS & Algos Primer. Fill in the exercises here and refer to
- *   ArraysAndStringsSolution.java for the complete code samples.
+ *   ArraysAndStringsSolutions.java for the complete code samples.
  *
  *   Execution: javac ArraysAndStrings.java && java -ea ArraysAndStrings
  */
