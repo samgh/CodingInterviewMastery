@@ -14,13 +14,13 @@ public class LinkedListSolutionsPart1 {
 
     // Exercise 1.1: Implement a singly-linked list
 
-    // A simple node class
-    public static class SinglyLinkedListNode {
-        // INSERT YOUR CODE HERE
-    }
-
     // Singly linked list class
     public static class SinglyLinkedList {
+
+        // A simple node class
+        public static class SinglyLinkedListNode {
+            // INSERT YOUR CODE HERE
+        }
 
         // Constructor
         public SinglyLinkedList() {
@@ -50,13 +50,13 @@ public class LinkedListSolutionsPart1 {
 
     // Exercise 1.2: Implement a doubly-linked list
 
-    // A simple node class
-    public static class DoublyLinkedListNode {
-        // INSERT YOUR CODE HERE
-    }
-
     // Doubly linked list class
     public static class DoublyLinkedList {
+
+        // A simple node class
+        public static class DoublyLinkedListNode {
+            // INSERT YOUR CODE HERE
+        }
 
         // Constructor
         public DoublyLinkedList() {

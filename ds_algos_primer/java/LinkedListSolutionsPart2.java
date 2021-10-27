@@ -13,7 +13,7 @@ import java.util.*;
 
 public class LinkedListSolutionsPart2 {
 
-    // A simple node class
+    // A simple singly-linked node class (copied from Part 1)
     public static class SinglyLinkedListNode {
         int val;
         SinglyLinkedListNode next;
@@ -23,7 +23,7 @@ public class LinkedListSolutionsPart2 {
         }
     }
 
-    // A simple node class
+    // A simple doubly-linked node class (copied from Part 1)
     public static class DoublyLinkedListNode {
         int val;
         DoublyLinkedListNode prev;
@@ -271,6 +271,7 @@ public class LinkedListSolutionsPart2 {
     }
 
 
+    // We've included some helper methods below that you can use for your tests
 
     // Test method to generate singly linked list with n items
     public static SinglyLinkedListNode singleGenerator(int n) {
@@ -305,7 +306,7 @@ public class LinkedListSolutionsPart2 {
         System.out.println("null");
     }
 
-    // Test method to print singly linked list
+    // Test method to print doubly linked list
     public static void printDouble(DoublyLinkedListNode n) {
         if (n == null) System.out.println("null");
         DoublyLinkedListNode curr = n;

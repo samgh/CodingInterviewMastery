@@ -15,21 +15,21 @@ public class LinkedListSolutionsPart1 {
 
     // Exercise 1.1: Implement a singly-linked list
 
-    // A simple node class
-    public static class SinglyLinkedListNode {
-        int val;
-        SinglyLinkedListNode next;
-
-        public SinglyLinkedListNode(int n) {
-            this.val = n;
-        }
-    }
-
     // Singly linked list class
     public static class SinglyLinkedList {
+        // A simple node class
+        public static class SinglyLinkedListNode {
+            int val;
+            SinglyLinkedListNode next;
+
+            public SinglyLinkedListNode(int n) {
+                this.val = n;
+            }
+        }
+
         // The head of our linked list
         SinglyLinkedListNode head;
-        int size;
+        int length;
 
         // Constructor
         public SinglyLinkedList() {
@@ -48,20 +48,20 @@ public class LinkedListSolutionsPart1 {
             head = newNode;
 
             // Efficient to track size as we add and remove nodes
-            this.size++;
+            this.length++;
         }
 
         // Delete the first occurrence of n from the list
         public boolean delete(int n) {
             // If the list is empty, there's nothing to remove
-            if (this.size == 0) return false;
+            if (this.length == 0) return false;
 
             // To remove a node, we simply remove the pointer to it. That means
             // we'll want to point the node before it (prev) to the one after
             // it (curr.next). We don't have a previous pointer, so we need to
             // track the previous node
             SinglyLinkedListNode prev = null;
-            SinglyLinkedListNode curr = head;
+            SinglyLinkedListNode curr = this.head;
 
             // Iterate over the list looking for n
             while (curr != null) {
@@ -69,11 +69,11 @@ public class LinkedListSolutionsPart1 {
                 if (curr.val == n) {
                     // If the value is the first item in our list, we need to
                     // handle this differently
-                    if (prev == null) head = curr.next;
+                    if (prev == null) this.head = curr.next;
                     else prev.next = curr.next;
 
                     // We removed a node so update the size
-                    this.size--;
+                    this.length--;
                     return true;
                 }
 
@@ -87,12 +87,12 @@ public class LinkedListSolutionsPart1 {
 
         // Return the number of items in the list
         public int size() {
-            return this.size;
+            return this.length;
         }
 
         // Convert the list to a string
         public String toString() {
-            SinglyLinkedListNode curr = head;
+            SinglyLinkedListNode curr = this.head;
 
             // Remember to use a StringBuilder as we construct a string
             StringBuilder sb = new StringBuilder();
@@ -110,23 +110,23 @@ public class LinkedListSolutionsPart1 {
 
     // Exercise 1.2: Implement a doubly-linked list
 
-    // A simple node class
-    public static class DoublyLinkedListNode {
-        int val;
-        DoublyLinkedListNode prev;
-        DoublyLinkedListNode next;
-
-        public DoublyLinkedListNode(int n) {
-            this.val = n;
-        }
-    }
-
     // Doubly linked list class
     public static class DoublyLinkedList {
+        // A simple node class
+        public static class DoublyLinkedListNode {
+            int val;
+            DoublyLinkedListNode prev;
+            DoublyLinkedListNode next;
+
+            public DoublyLinkedListNode(int n) {
+                this.val = n;
+            }
+        }
+
         // We want pointers to both the head and tail
         DoublyLinkedListNode head;
         DoublyLinkedListNode tail;
-        int size;
+        int length;
 
         // Constructor
         public DoublyLinkedList() {}
@@ -146,28 +146,28 @@ public class LinkedListSolutionsPart1 {
                 this.head = newNode;
             }
 
-            size++;
+            this.length++;
         }
 
         // Delete the first occurrence of n from the list
         public boolean delete(int n) {
             // If the list is empty we can't remove anything
-            if (this.size == 0) return false;
+            if (this.length == 0) return false;
 
-            DoublyLinkedListNode curr = head;
+            DoublyLinkedListNode curr = this.head;
             // Find the node in the list. We don't need to track the previous
             // node since we already have a pointer to it
             while (curr != null) {
                 if (curr.val == n) {
                     // If it is the first node, update the head
-                    if (curr.prev == null) head = curr.next;
+                    if (curr.prev == null) this.head = curr.next;
                     else curr.prev.next = curr.next;
 
                     // If it is the last node, update the tail
-                    if (curr.next == null) tail = curr.prev;
+                    if (curr.next == null) this.tail = curr.prev;
                     else curr.next.prev = curr.prev;
 
-                    size--;
+                    this.length--;
                     return true;
                 }
                 curr = curr.next;
@@ -177,14 +177,14 @@ public class LinkedListSolutionsPart1 {
 
         // Return the number of items in the list
         public int size() {
-            return this.size;
+            return this.length;
         }
 
         // Convert the list to a string
         public String toString() {
-            if (this.size == 0) return "null";
+            if (this.length == 0) return "null";
 
-            DoublyLinkedListNode curr = head;
+            DoublyLinkedListNode curr = this.head;
 
             // Remember to use a StringBuilder as we construct a string
             StringBuilder sb = new StringBuilder();
@@ -209,6 +209,7 @@ public class LinkedListSolutionsPart1 {
         System.out.println(l.delete(1));
         System.out.println(l.delete(4));
         System.out.println(l);
+        System.out.println(l.size());
 
         DoublyLinkedList d = new DoublyLinkedList();
         for (int i = 6; i > 0; i--) d.insert(i);
@@ -216,5 +217,6 @@ public class LinkedListSolutionsPart1 {
         System.out.println(d.delete(1));
         System.out.println(d.delete(4));
         System.out.println(d);
+        System.out.println(d.size());
     }
 }
