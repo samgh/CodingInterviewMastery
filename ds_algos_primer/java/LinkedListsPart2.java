@@ -22,7 +22,7 @@ public class LinkedListSolutionsPart2 {
         }
     }
 
-    // A simple singly-linked node class (copied from Part 1)
+    // A simple doubly-linked node class (copied from Part 1)
     public static class DoublyLinkedListNode {
         int val;
         DoublyLinkedListNode prev;
@@ -131,7 +131,10 @@ public class LinkedListSolutionsPart2 {
 
     // Test method to print doubly linked list
     public static void printDouble(DoublyLinkedListNode n) {
-        if (n == null) System.out.println("null");
+        if (n == null) {
+            System.out.println("null");
+            return;
+        }
         DoublyLinkedListNode curr = n;
         System.out.print("null <- ");
         while (curr.next != null) {

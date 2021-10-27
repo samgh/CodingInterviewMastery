@@ -197,7 +197,10 @@ var printSingle = function(n) {
  * @param{DoublyLinkedListNode} n
  */
 var printDouble = function(n) {
-    if (n == null) console.log("null");
+    if (n == null) {
+        console.log("null");
+        return null;
+    }
 
     var curr = n;
     var result = [];

@@ -134,6 +134,7 @@ public class LinkedListSolutionsPart1 {
         // Insert node at the front of the list
         public void insert(int n) {
             DoublyLinkedListNode newNode = new DoublyLinkedListNode(n);
+
             // If list is empty (head is null) the node becomes head and tail
             if (this.head == null) {
                 this.head = newNode;
@@ -155,6 +156,7 @@ public class LinkedListSolutionsPart1 {
             if (this.length == 0) return false;
 
             DoublyLinkedListNode curr = this.head;
+            
             // Find the node in the list. We don't need to track the previous
             // node since we already have a pointer to it
             while (curr != null) {

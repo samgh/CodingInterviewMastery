@@ -85,7 +85,7 @@ public class LinkedListSolutionsPart2 {
 
     // Exercise 2.3: Write a function that de-interleaves the even and odd
     // indices in a singly-linked list. Your resulting list should have all the
-    // even indices first followed by all the odd indices.
+    // even indices first followed by all the odd indices
     public static void deinterleave(SinglyLinkedListNode l) {
         if (l == null || l.next == null) return;
 
@@ -308,7 +308,10 @@ public class LinkedListSolutionsPart2 {
 
     // Test method to print doubly linked list
     public static void printDouble(DoublyLinkedListNode n) {
-        if (n == null) System.out.println("null");
+        if (n == null) {
+            System.out.println("null");
+            return;
+        }
         DoublyLinkedListNode curr = n;
         System.out.print("null <- ");
         while (curr.next != null) {
