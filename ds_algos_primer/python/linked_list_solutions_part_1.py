@@ -35,6 +35,9 @@ class SinglyLinkedList:
 
     """
     Insert new node at the head of the list
+
+    Time Complexity: O(1)
+    Space Complexity: O(1)
     """
     def insert(self, n: int):
         newNode = self._SinglyLinkedListNode(n)
@@ -50,6 +53,9 @@ class SinglyLinkedList:
 
     """
     Delete the first occurrence of n from the list
+
+    Time Complexity: O(length)
+    Space Complexity: O(1)
     """
     def delete(self, n: int) -> bool:
         # If the list is empty, there's nothing to remove
@@ -87,12 +93,18 @@ class SinglyLinkedList:
 
     """
     Return the number of items in the list
+
+    Time Complexity: O(1)
+    Space Complexity: O(1)
     """
     def size(self) -> int:
         return self.length
 
     """
     Convert the list to a string
+
+    Time Complexity: O(n)
+    Space Complexity: O(n)
     """
     def __str__(self):
         curr = self.head
@@ -135,6 +147,9 @@ class DoublyLinkedList:
 
     """
     Insert node at the front of the list
+
+    Time Complexity: O(1)
+    Space Complexity: O(1)
     """
     def insert(self, n: int):
         newNode = self._DoublyLinkedListNode(n);
@@ -154,6 +169,9 @@ class DoublyLinkedList:
 
     """
     Delete the first occurrence of n from the list
+
+    Time Complexity: O(n)
+    Space Complexity: O(1)
     """
     def delete(self, n: int) -> bool:
         # If the list is empty we can't remove anything
@@ -187,12 +205,18 @@ class DoublyLinkedList:
 
     """
     Return the number of items in the list
+
+    Time Complexity: O(1)
+    Space Complexity: O(1)
     """
     def size(self) -> int:
         return self.length
 
     """
     Convert the list to a string
+
+    Time Complexity: O(n)
+    Space Complexity: O(n)
     """
     def __str__(self):
         if self.length == 0:

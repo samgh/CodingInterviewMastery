@@ -37,7 +37,12 @@ public class LinkedListSolutionsPart1 {
             // null and size defaults to 0
         }
 
-        // Insert new node at the head of the list
+        /*
+         * Insert new node at the head of the list
+         *
+         * Time Complexity: O(1)
+         * Space Complexity: O(1)
+         */
         public void insert(int n) {
             SinglyLinkedListNode newNode = new SinglyLinkedListNode(n);
 
@@ -51,7 +56,12 @@ public class LinkedListSolutionsPart1 {
             this.length++;
         }
 
-        // Delete the first occurrence of n from the list
+        /*
+         * Delete the first occurrence of n from the list
+         *
+         * Time Complexity: O(length)
+         * Space Complexity: O(1)
+         */
         public boolean delete(int n) {
             // If the list is empty, there's nothing to remove
             if (this.length == 0) return false;
@@ -85,12 +95,22 @@ public class LinkedListSolutionsPart1 {
             return false;
         }
 
-        // Return the number of items in the list
+        /*
+         * Return the number of items in the list
+         *
+         * Time Complexity: O(1)
+         * Space Complexity: O(1)
+         */
         public int size() {
             return this.length;
         }
 
-        // Convert the list to a string
+        /*
+         * Convert the list to a string
+         *
+         * Time Complexity: O(n)
+         * Space Complexity: O(n)
+         */
         public String toString() {
             SinglyLinkedListNode curr = this.head;
 
@@ -131,7 +151,12 @@ public class LinkedListSolutionsPart1 {
         // Constructor
         public DoublyLinkedList() {}
 
-        // Insert node at the front of the list
+        /*
+         * Insert node at the front of the list
+         *
+         * Time Complexity: O(1)
+         * Space Complexity: O(1)
+         */
         public void insert(int n) {
             DoublyLinkedListNode newNode = new DoublyLinkedListNode(n);
 
@@ -150,13 +175,18 @@ public class LinkedListSolutionsPart1 {
             this.length++;
         }
 
-        // Delete the first occurrence of n from the list
+        /*
+         * Delete the first occurrence of n from the list
+         *
+         * Time Complexity: O(n)
+         * Space Complexity: O(1)
+         */
         public boolean delete(int n) {
             // If the list is empty we can't remove anything
             if (this.length == 0) return false;
 
             DoublyLinkedListNode curr = this.head;
-            
+
             // Find the node in the list. We don't need to track the previous
             // node since we already have a pointer to it
             while (curr != null) {
@@ -177,12 +207,22 @@ public class LinkedListSolutionsPart1 {
             return false;
         }
 
-        // Return the number of items in the list
+        /*
+         * Return the number of items in the list
+         *
+         * Time Complexity: O(1)
+         * Space Complexity: O(1)
+         */
         public int size() {
             return this.length;
         }
 
-        // Convert the list to a string
+        /*
+         * Convert the list to a string
+         *
+         * Time Complexity: O(n)
+         * Space Complexity: O(n)
+         */
         public String toString() {
             if (this.length == 0) return "null";
 

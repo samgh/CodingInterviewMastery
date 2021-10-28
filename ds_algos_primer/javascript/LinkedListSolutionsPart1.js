@@ -31,6 +31,9 @@ function SinglyLinkedList() {
     /**
      * Insert new node at the head of the list
      *
+     * Time Complexity: O(1)
+     * Space Complexity: O(1)
+     *
      * @param{number} n
      */
     this.insert = function(n) {
@@ -48,6 +51,9 @@ function SinglyLinkedList() {
 
     /**
      * Delete the first occurrence of n from the list
+     *
+     * Time Complexity: O(length)
+     * Space Complexity: O(1)
      *
      * @param{number} n
      * @return{boolean}
@@ -88,6 +94,9 @@ function SinglyLinkedList() {
     /**
      * Return the number of items in the list
      *
+     * Time Complexity: O(1)
+     * Space Complexity: O(1)
+     *
      * @return{number}
      */
     this.size = function() {
@@ -96,6 +105,9 @@ function SinglyLinkedList() {
 
     /**
      * Convert the list to a string
+     *
+     * Time Complexity: O(n)
+     * Space Complexity: O(n)
      *
      * @return{string}
      */
@@ -137,6 +149,9 @@ function DoublyLinkedList() {
     /**
      * Insert new node at the head of the list
      *
+     * Time Complexity: O(1)
+     * Space Complexity: O(1)
+     *
      * @param{number} n
      */
     this.insert = function(n) {
@@ -158,6 +173,9 @@ function DoublyLinkedList() {
 
     /**
      * Delete the first occurrence of n from the list
+     *
+     * Time Complexity: O(n)
+     * Space Complexity: O(1)
      *
      * @param{number} n
      * @return{boolean}
@@ -190,6 +208,9 @@ function DoublyLinkedList() {
     /**
      * Return the number of items in the list
      *
+     * Time Complexity: O(1)
+     * Space Complexity: O(1)
+     *
      * @return{number}
      */
     this.size = function() {
@@ -198,6 +219,9 @@ function DoublyLinkedList() {
 
     /**
      * Convert the list to a string
+     *
+     * Time Complexity: O(n)
+     * Space Complexity: O(n)
      *
      * @return{string}
      */

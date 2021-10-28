@@ -12,8 +12,13 @@ import java.util.*;
 
 public class ArraysAndStringsSolutions {
 
-    // Exercise 1.1: Write a function that takes an integer array and reverses
-    // the values in place
+    /*
+     * Exercise 1.1: Write a function that takes an integer array and reverses
+     * the values in place
+     *
+     * Time Complexity: O(arr.length)
+     * Space Complexity: O(1)
+     */
     public static void reverseArray(int[] arr) {
         // We will iterate to the midpoint of the array. For each value, we can
         // get the index its supposed to swap with by computing arr.length-i-1
@@ -24,8 +29,13 @@ public class ArraysAndStringsSolutions {
         }
     }
 
-    // Exercise 1.2: Given a 2D matrix, write a function to print the values in
-    // the matrix in a clockwise spiral from outside to inside
+    /*
+     * Exercise 1.2: Given a 2D matrix, write a function to print the values in
+     * the matrix in a clockwise spiral from outside to inside
+     *
+     * Time Complexity: O(arr.length * arr[0].length)
+     * Space Complexity: O(1)
+     */
     public static void printSpiral(int[][] arr) {
         // We need to keep track of the boundaries of the current layer of the
         // spiral that we are traversing
@@ -65,8 +75,13 @@ public class ArraysAndStringsSolutions {
         }
     }
 
-    // Exercise 1.3: Given a 2D matrix, write a function to print the values in
-    // the matrix in a zig-zag order
+    /*
+     * Exercise 1.3: Given a 2D matrix, write a function to print the values in
+     * the matrix in a zig-zag order
+     *
+     * Time Complexity: O(arr.length * arr[0].length)
+     * Space Complexity: O(1)
+     */
     public static void printDiagonals(int[][] arr) {
         int row = 0;
         int col = 0;
@@ -112,8 +127,13 @@ public class ArraysAndStringsSolutions {
         }
     }
 
-    // Exercise 1.4: Write a function that takes in a string and removes every
-    // even-indexed character
+    /*
+     * Exercise 1.4: Write a function that takes in a string and removes every
+     * even-indexed character
+     *
+     * Time Complexity: O(s.length())
+     * Space Complexity: O(s.length())
+     */
     public static String removeEven(String s) {
         // A StringBuilder is ideal here since strings are immutable. Could also
         // use a char[] and convert it to a string
@@ -127,8 +147,13 @@ public class ArraysAndStringsSolutions {
         return sb.toString();
     }
 
-    // Exercises 1.5: Zig Zag Conversion
-    // Full Problem Definition: https://leetcode.com/problems/zigzag-conversion/
+    /*
+     * Exercises 1.5: Zig Zag Conversion
+     * Full Problem Definition: https://leetcode.com/problems/zigzag-conversion/
+     *
+     * Time Complexity: O(s.length())
+     * Space Complexity: O(s.length())
+     */
     public static String zigZag(String s, int numRows) {
         // We'll compute each row and then merge them all together at the end
         StringBuilder[] rows = new StringBuilder[numRows];
@@ -158,7 +183,12 @@ public class ArraysAndStringsSolutions {
         return result.toString();
     }
 
-    // Exercise 2.1: Given a string, print out all of the substrings
+    /*
+     * Exercise 2.1: Given a string, print out all of the substrings
+     *
+     * Time Complexity: O(s.length()^2)
+     * Space Complexity: O(1)
+     */
     public static void printSubstrings(String s) {
         for (int i = 0; i < s.length(); i++) {
             for (int j = i+1; j < s.length(); j++) {
@@ -167,8 +197,13 @@ public class ArraysAndStringsSolutions {
         }
     }
 
-    // Exercise 2.2: Write a function to find all duplicates in an array. The
-    // array will contain exactly 1 duplicated value
+    /*
+     * Exercise 2.2: Write a function to find all duplicates in an array. The
+     * array will contain exactly 1 duplicated value
+     *
+     * Time Complexity: O(arr.length^2)
+     * Space Complexity: O(1)
+     */
     public static int findDuplicates(int[] arr) {
         // Use 2 pointers to compare each pair of values
         for (int i = 0; i < arr.length; i++) {
@@ -181,10 +216,15 @@ public class ArraysAndStringsSolutions {
         return -1;
     }
 
-    // Exercise 2.3: Given a sorted array, find every pair of values in the
-    // array that sum up to a given target
-    public static int[][] twoSum(int[] arr, int target) {
-        List<Integer[]> result = new ArrayList<>();
+    /*
+     * Exercise 2.3: Given a sorted array, find every pair of values in the
+     * array that sum up to a given target
+     *
+     * Time Complexity: O(arr.length)
+     * Space Complexity: O(1)
+     */
+    public static List<int[]> twoSum(int[] arr, int target) {
+        List<int[]> result = new ArrayList<>();
 
         // We start our pointers at the beginning and move towards the center
         int i = 0;
@@ -195,7 +235,7 @@ public class ArraysAndStringsSolutions {
             // If we found the target, we add it to the result. Then we either
             // increment i or decrement j. It doesn't matter which we do
             if (sum == target) {
-                result.add(new Integer[]{arr[i], arr[j]});
+                result.add(new int[]{arr[i], arr[j]});
 
                 // We want to avoid including the same pair multiple times so we
                 // skip the pointer ahead to the next unique value. Since our
@@ -213,18 +253,15 @@ public class ArraysAndStringsSolutions {
             if (sum > target) j--;
         }
 
-        // Convert our list into a 2D array
-        int[][] resultArray = new int[result.size()][2];
-        for (int k = 0; k < resultArray.length; k++) {
-            Integer[] r = result.get(k);
-            resultArray[k][0] = r[0];
-            resultArray[k][1] = r[1];
-        }
-
-        return resultArray;
+        return result;
     }
 
-    // Exercise 3.1: Given two arrays, compare them to see if they are equal
+    /*
+     * Exercise 3.1: Given two arrays, compare them to see if they are equal
+     *
+     * Time Complexity: O(arr1.length)
+     * Space Complexity: O(1)
+     */
     public static boolean arraysAreEqual(int[] arr1, int[] arr2) {
         // If they're not the same length they can't be equal
         if (arr1.length != arr2.length) return false;
@@ -237,8 +274,13 @@ public class ArraysAndStringsSolutions {
         return true;
     }
 
-    // Exercise 3.2: Given two strings, determine if one string is the reverse
-    // of the other string
+    /*
+     * Exercise 3.2: Given two strings, determine if one string is the reverse
+     * of the other string
+     *
+     * Time Complexity: O(s1.length())
+     * Space Complexity: O(1)
+     */
     public static boolean stringsAreOpposite(String s1, String s2) {
         // If they're not the same length they can't be opposites
         if (s1.length() != s2.length()) return false;
@@ -253,8 +295,13 @@ public class ArraysAndStringsSolutions {
         return true;
     }
 
-    // Exercise 3.3: Given two strings, determine whether they are anagrams of
-    // each other
+    /*
+     * Exercise 3.3: Given two strings, determine whether they are anagrams of
+     * each other
+     *
+     * Time Complexity: O(s1.length())
+     * Space Complexity: O(s1.length())
+     */
     public static boolean areAnagrams(String s1, String s2) {
         // If they're not the same length they can't be anagrams
         if (s1.length() != s2.length()) return false;
@@ -281,7 +328,12 @@ public class ArraysAndStringsSolutions {
         return true;
     }
 
-    // Exercise 4.1: Given an array, compute the sum of each length-k subarray
+    /*
+     * Exercise 4.1: Given an array, compute the sum of each length-k subarray
+     *
+     * Time Complexity: O(arr.length)
+     * Space Complexity: O(1)
+     */
     public static int[] subarraySums(int[] arr, int k) {
         // The size of our result will be arr.length - k + 1
         int[] result = new int[arr.length - k + 1];
@@ -307,8 +359,13 @@ public class ArraysAndStringsSolutions {
         return result;
     }
 
-    // Exercise 4.2: Given a string, find the longest substring of the string
-    // that does not contain any repeated characters
+    /*
+     * Exercise 4.2: Given a string, find the longest substring of the string
+     * that does not contain any repeated characters
+     *
+     * Time Complexity: O(s.length())
+     * Space Complexity: O(1)
+     */
     public static int noRepeatedChars(String s) {
         // Track the characters in our current substring
         Set<Character> inSubstring = new HashSet<>();
@@ -337,8 +394,13 @@ public class ArraysAndStringsSolutions {
         return maxSubstring;
     }
 
-    // Exercise 4.3: Given two strings, s and p, find all occurrences of
-    // anagrams of p in s. The output is the starting index of each anagram
+    /*
+     * Exercise 4.3: Given two strings, s and p, find all occurrences of
+     * anagrams of p in s. The output is the starting index of each anagram
+     *
+     * Time Complexity: O(s.length())
+     * Space Complexity: O(1)
+     */
     public static List<Integer> findAllAnagrams(String s, String p) {
         List<Integer> result = new ArrayList<>();
 
@@ -374,8 +436,13 @@ public class ArraysAndStringsSolutions {
         return result;
     }
 
-    // Exercise 4.4: Given two strings, s and p, find the smallest substring of
-    // s that contains all the characters in p
+    /*
+     * Exercise 4.4: Given two strings, s and p, find the smallest substring of
+     * s that contains all the characters in p
+     *
+     * Time Complexity: O(s.length())
+     * Space Complexity: O(1)
+     */
     public static String smallestSubstring(String s, String p) {
         // Same as 4.3, we use an array to store character count
         int[] chars = new int[256];
@@ -451,7 +518,7 @@ public class ArraysAndStringsSolutions {
 
         System.out.println(findDuplicates(new int[]{1,2,3,2,4}));
 
-        int[][] twoSum = twoSum(new int[]{1,2,2,2,3,4,5,6,6,6}, 8);
+        List<int[]> twoSum = twoSum(new int[]{1,2,2,2,3,4,5,6,6,6}, 8);
         for (int[] a : twoSum) System.out.println(Arrays.toString(a));
 
         System.out.println(arraysAreEqual(new int[]{1,2,3}, new int[]{1,2,3}));

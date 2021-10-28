@@ -34,8 +34,13 @@ public class LinkedListSolutionsPart2 {
         }
     }
 
-    // Exercise 2.1: Write a function that swaps two nodes in a doubly-linked
-    // list
+    /*
+     * Exercise 2.1: Write a function that swaps two nodes in a doubly-linked
+     * list
+     *
+     * Time Complexity: O(max(n, m))
+     * Space Complexity: O(1)
+     */
     public static void swapNodes(DoublyLinkedListNode l, int n, int m) {
         if (n < 0 || m < 0) throw new IndexOutOfBoundsException();
         if (n == m) return;
@@ -73,8 +78,13 @@ public class LinkedListSolutionsPart2 {
         if (nNode.next != null) nNode.next.prev = nNode;
     }
 
-    // Exercise 2.2: Write a function that removes the odd-indexed values from a
-    // singly-linked list
+    /*
+     * Exercise 2.2: Write a function that removes the odd-indexed values from a
+     * singly-linked list
+     *
+     * Time Complexity: O(length(l))
+     * Space Complexity: O(1)
+     */
     public static void removeOdd(SinglyLinkedListNode l) {
         SinglyLinkedListNode curr = l;
         while (curr != null && curr.next != null) {
@@ -83,9 +93,14 @@ public class LinkedListSolutionsPart2 {
         }
     }
 
-    // Exercise 2.3: Write a function that de-interleaves the even and odd
-    // indices in a singly-linked list. Your resulting list should have all the
-    // even indices first followed by all the odd indices
+    /*
+     * Exercise 2.3: Write a function that de-interleaves the even and odd
+     * indices in a singly-linked list. Your resulting list should have all the
+     * even indices first followed by all the odd indices
+     *
+     * Time Complexity: O(length(l))
+     * Space Complexity: O(1)
+     */
     public static void deinterleave(SinglyLinkedListNode l) {
         if (l == null || l.next == null) return;
 
@@ -130,7 +145,12 @@ public class LinkedListSolutionsPart2 {
         evens.next = oddsStart;
     }
 
-    // Exercise 2.4: Write a function that reverses a singly-linked list
+    /*
+     * Exercise 2.4: Write a function that reverses a singly-linked list
+     *
+     * Time Complexity: O(length(l))
+     * Space Complexity: O(1)
+     */
     public static SinglyLinkedListNode reverse(SinglyLinkedListNode l) {
         // Track the previous because we will point the current node back
         SinglyLinkedListNode prev = null;
@@ -148,8 +168,13 @@ public class LinkedListSolutionsPart2 {
         return prev;
     }
 
-    // Exercise 3.1: Write a function that compares 2 singly-linked lists and
-    // returns true if the two lists are identical
+    /*
+     * Exercise 3.1: Write a function that compares 2 singly-linked lists and
+     * returns true if the two lists are identical
+     *
+     * Time Complexity: O(min(length(l1), length(l2)))
+     * Space Complexity: O(1)
+     */
     public static boolean areEqual(SinglyLinkedListNode l1, SinglyLinkedListNode l2) {
         // Iterate over both lists simultaneously and compare each value
         while (l1 != null && l2 != null) {
@@ -162,8 +187,13 @@ public class LinkedListSolutionsPart2 {
         return true;
     }
 
-    // Exercise 3.2: Write a function that returns the nth-to-last value in a
-    // singly-linked list
+    /*
+     * Exercise 3.2: Write a function that returns the nth-to-last value in a
+     * singly-linked list
+     *
+     * Time Complexity: O(length(l))
+     * Space Complexity: O(1)
+     */
     public static SinglyLinkedListNode nthToLast(SinglyLinkedListNode l, int n) {
         // We will use a fast and slow pointer that are exactly n nodes apart.
         // When fast reaches the end of the list, slow will be at the nth-to-last
@@ -186,8 +216,13 @@ public class LinkedListSolutionsPart2 {
         return slow;
     }
 
-    // Exercise 3.3: Write a function that returns the value at the midpoint of
-    // a singly-linked list. You can assume the length of the list is odd.
+    /*
+     * Exercise 3.3: Write a function that returns the value at the midpoint of
+     * a singly-linked list. You can assume the length of the list is odd.
+     *
+     * Time Complexity: O(length(l))
+     * Space Complexity: O(1)
+     */
     public static SinglyLinkedListNode midpoint(SinglyLinkedListNode l) {
         if (l.next == null) return l;
 
@@ -205,7 +240,12 @@ public class LinkedListSolutionsPart2 {
         return slow;
     }
 
-    // Exercise 4.1: Remove all occurrences of n from a singly-linked list
+    /*
+     * Exercise 4.1: Remove all occurrences of n from a singly-linked list
+     *
+     * Time Complexity: O(length(l))
+     * Space Complexity: O(1)
+     */
     public static SinglyLinkedListNode removeAll(SinglyLinkedListNode l, int n) {
         // Use a dummy node to make it easy if we have to remove the first node
         // in the list
@@ -228,9 +268,14 @@ public class LinkedListSolutionsPart2 {
         return dummy.next;
     }
 
-    // Exercise 5.1: Given a singly-linked list, determine if the list contains
-    // a cycle. DO NOT use Floyd’s algorithm. FInd some other method for
-    // identifying a cycle
+    /*
+     * Exercise 5.1: Given a singly-linked list, determine if the list contains
+     * a cycle. DO NOT use Floyd’s algorithm. FInd some other method for
+     * identifying a cycle
+     *
+     * Time Complexity: O(length(l))
+     * Space Complexity: O(length(l))
+     */
     public static boolean hasCycleNaive(SinglyLinkedListNode l) {
         // Add all nodes to a set and see if we visit them more than once
         Set<SinglyLinkedListNode> visited = new HashSet<>();
@@ -249,8 +294,13 @@ public class LinkedListSolutionsPart2 {
         return false;
     }
 
-    // Exercise 5.2: Given a singly-linked list, determine if the list contains
-    // a cycle using Floyd's algorithm
+    /*
+     * Exercise 5.2: Given a singly-linked list, determine if the list contains
+     * a cycle using Floyd's algorithm
+     *
+     * Time Complexity: O(length(l))
+     * Space Complexity: O(1)
+     */
     public static boolean hasCycle(SinglyLinkedListNode l) {
         if (l == null) return false;
 
