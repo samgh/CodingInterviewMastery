@@ -22,27 +22,52 @@ public class LinkedListSolutionsPart1 {
             // INSERT YOUR CODE HERE
         }
 
-        // Constructor
+        /*
+         * Constructor
+         *
+         * Time Complexity:
+         * Space Complexity:
+         */
         public SinglyLinkedList() {
             // INSERT YOUR CODE HERE
         }
 
-        // Insert new node at the head of the list
+        /*
+         * Insert new node at the head of the list
+         *
+         * Time Complexity:
+         * Space Complexity:
+         */
         public void insert(int n) {
             // INSERT YOUR CODE HERE
         }
 
-        // Delete the first occurrence of n from the list
+        /*
+         * Delete the first occurrence of n from the list
+         *
+         * Time Complexity:
+         * Space Complexity:
+         */
         public boolean delete(int n) {
             // INSERT YOUR CODE HERE
         }
 
-        // Return the number of items in the list
+        /*
+         * Return the number of items in the list
+         *
+         * Time Complexity:
+         * Space Complexity:
+         */
         public int size() {
             // INSERT YOUR CODE HERE
         }
 
-        // Convert the list to a string
+        /*
+         * Convert the list to a string
+         *
+         * Time Complexity:
+         * Space Complexity:
+         */
         public String toString() {
             // INSERT YOUR CODE HERE
         }
@@ -58,27 +83,52 @@ public class LinkedListSolutionsPart1 {
             // INSERT YOUR CODE HERE
         }
 
-        // Constructor
+        /*
+         * Constructor
+         *
+         * Time Complexity:
+         * Space Complexity:
+         */
         public DoublyLinkedList() {
             // INSERT YOUR CODE HERE
         }
 
-        // Insert node at the front of the list
+        /*
+         * Insert node at the front of the list
+         *
+         * Time Complexity:
+         * Space Complexity:
+         */
         public void insert(int n) {
             // INSERT YOUR CODE HERE
         }
 
-        // Delete the first occurrence of n from the list
+        /*
+         * Delete the first occurrence of n from the list
+         *
+         * Time Complexity:
+         * Space Complexity:
+         */
         public boolean delete(int n) {
             // INSERT YOUR CODE HERE
         }
 
-        // Return the number of items in the list
+        /*
+         * Return the number of items in the list
+         *
+         * Time Complexity:
+         * Space Complexity:
+         */
         public int size() {
             // INSERT YOUR CODE HERE
         }
 
-        // Convert the list to a string
+        /*
+         * Convert the list to a string
+         *
+         * Time Complexity:
+         * Space Complexity:
+         */
         public String toString() {
             // INSERT YOUR CODE HERE
         }

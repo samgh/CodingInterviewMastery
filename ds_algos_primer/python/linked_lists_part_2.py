@@ -28,6 +28,9 @@ class DoublyLinkedListNode:
 """
 Exercise 2.1: Write a function that swaps two nodes in a doubly-linked
 list
+
+Time Complexity:
+Space Complexity:
 """
 def swap_nodes(l: DoublyLinkedListNode, n: int, m: int):
     # INSERT YOUR CODE HERE
@@ -35,6 +38,9 @@ def swap_nodes(l: DoublyLinkedListNode, n: int, m: int):
 """
 Exercise 2.2: Write a function that removes the odd-indexed values from a
 singly-linked list
+
+Time Complexity:
+Space Complexity:
 """
 def remove_odd(l: SinglyLinkedListNode):
     # INSERT YOUR CODE HERE
@@ -43,12 +49,18 @@ def remove_odd(l: SinglyLinkedListNode):
 Exercise 2.3: Write a function that de-interleaves the even and odd indices in a
 singly-linked list. Your resulting list should have all the even indices first
 followed by all the odd indices
+
+Time Complexity:
+Space Complexity:
 """
 def deinterleave(l: SinglyLinkedListNode):
     # INSERT YOUR CODE HERE
 
 """
 Exercise 2.4: Write a function that reverses a singly-linked list
+
+Time Complexity:
+Space Complexity:
 """
 def reverse(l: SinglyLinkedListNode) -> SinglyLinkedListNode:
     # INSERT YOUR CODE HERE
@@ -56,6 +68,9 @@ def reverse(l: SinglyLinkedListNode) -> SinglyLinkedListNode:
 """
 Exercise 3.1: Write a function that compares 2 singly-linked lists and returns
 true if the two lists are identical
+
+Time Complexity:
+Space Complexity:
 """
 def are_equal(l1: SinglyLinkedListNode, l2: SinglyLinkedListNode) -> bool:
     # INSERT YOUR CODE HERE
@@ -63,6 +78,9 @@ def are_equal(l1: SinglyLinkedListNode, l2: SinglyLinkedListNode) -> bool:
 """
 Exercise 3.2: Write a function that returns the nth-to-last value in a
 singly-linked list
+
+Time Complexity:
+Space Complexity:
 """
 def nth_to_last(l: SinglyLinkedListNode, n: int) -> SinglyLinkedListNode:
     # INSERT YOUR CODE HERE
@@ -70,12 +88,18 @@ def nth_to_last(l: SinglyLinkedListNode, n: int) -> SinglyLinkedListNode:
 """
 Exercise 3.3: Write a function that returns the value at the midpoint of a
 singly-linked list. You can assume the length of the list is odd.
+
+Time Complexity:
+Space Complexity:
 """
 def midpoint(l: SinglyLinkedListNode) -> SinglyLinkedListNode:
     # INSERT YOUR CODE HERE
 
 """
 Exercise 4.1: Remove all occurrences of n from a singly-linked list
+
+Time Complexity:
+Space Complexity:
 """
 def remove_all(l: SinglyLinkedListNode, n: int) -> SinglyLinkedListNode:
     # INSERT YOUR CODE HERE
@@ -84,6 +108,9 @@ def remove_all(l: SinglyLinkedListNode, n: int) -> SinglyLinkedListNode:
 Exercise 5.1: Given a singly-linked list, determine if the list contains a
 cycle. DO NOT use Floyd’s algorithm. FInd some other method for identifying a
 cycle
+
+Time Complexity:
+Space Complexity:
 """
 def has_cycle_naive(l: SinglyLinkedListNode) -> bool:
     # INSERT YOUR CODE HERE
@@ -91,6 +118,9 @@ def has_cycle_naive(l: SinglyLinkedListNode) -> bool:
 """
 Exercise 5.2: Given a singly-linked list, determine if the list contains a cycle
 using Floyd's algorithm
+
+Time Complexity:
+Space Complexity:
 """
 def has_cycle(l: SinglyLinkedListNode) -> bool:
     # INSERT YOUR CODE HERE

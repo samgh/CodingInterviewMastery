@@ -33,62 +33,112 @@ public class LinkedListSolutionsPart2 {
         }
     }
 
-    // Exercise 2.1: Write a function that swaps two nodes in a doubly-linked
-    // list
+    /*
+     * Exercise 2.1: Write a function that swaps two nodes in a doubly-linked
+     * list
+     *
+     * Time Complexity:
+     * Space Complexity:
+     */
     public static void swapNodes(DoublyLinkedListNode l, int n, int m) {
         // INSERT YOUR CODE HERE
     }
 
-    // Exercise 2.2: Write a function that removes the odd-indexed values from a
-    // singly-linked list
+    /*
+     * Exercise 2.2: Write a function that removes the odd-indexed values from a
+     * singly-linked list
+     *
+     * Time Complexity:
+     * Space Complexity:
+     */
     public static void removeOdd(SinglyLinkedListNode l) {
         // INSERT YOUR CODE HERE
     }
 
-    // Exercise 2.3: Write a function that de-interleaves the even and odd
-    // indices in a singly-linked list. Your resulting list should have all the
-    // even indices first followed by all the odd indices.
+    /*
+     * Exercise 2.3: Write a function that de-interleaves the even and odd
+     * indices in a singly-linked list. Your resulting list should have all the
+     * even indices first followed by all the odd indices.
+     *
+     * Time Complexity:
+     * Space Complexity:
+     */
     public static void deinterleave(SinglyLinkedListNode l) {
         // INSERT YOUR CODE HERE
     }
 
-    // Exercise 2.4: Write a function that reverses a singly-linked list
+    /*
+     * Exercise 2.4: Write a function that reverses a singly-linked list
+     *
+     * Time Complexity:
+     * Space Complexity:
+     */
     public static SinglyLinkedListNode reverse(SinglyLinkedListNode l) {
         // INSERT YOUR CODE HERE
     }
 
-    // Exercise 3.1: Write a function that compares 2 singly-linked lists and
-    // returns true if the two lists are identical
+    /*
+     * Exercise 3.1: Write a function that compares 2 singly-linked lists and
+     * returns true if the two lists are identical
+     *
+     * Time Complexity:
+     * Space Complexity:
+     */
     public static boolean areEqual(SinglyLinkedListNode l1, SinglyLinkedListNode l2) {
         // INSERT YOUR CODE HERE
     }
 
-    // Exercise 3.2: Write a function that returns the nth-to-last value in a
-    // singly-linked list
+    /*
+     * Exercise 3.2: Write a function that returns the nth-to-last value in a
+     * singly-linked list
+     *
+     * Time Complexity:
+     * Space Complexity:
+     */
     public static SinglyLinkedListNode nthToLast(SinglyLinkedListNode l, int n) {
         // INSERT YOUR CODE HERE
     }
 
-    // Exercise 3.3: Write a function that returns the value at the midpoint of
-    // a singly-linked list. You can assume the length of the list is odd.
+    /*
+     * Exercise 3.3: Write a function that returns the value at the midpoint of
+     * a singly-linked list. You can assume the length of the list is odd.
+     *
+     * Time Complexity:
+     * Space Complexity:
+     */
     public static SinglyLinkedListNode midpoint(SinglyLinkedListNode l) {
         // INSERT YOUR CODE HERE
     }
 
-    // Exercise 4.1: Remove all occurrences of n from a singly-linked list
+    /*
+     * Exercise 4.1: Remove all occurrences of n from a singly-linked list
+     *
+     * Time Complexity:
+     * Space Complexity:
+     */
     public static SinglyLinkedListNode removeAll(SinglyLinkedListNode l, int n) {
         // INSERT YOUR CODE HERE
     }
 
-    // Exercise 5.1: Given a singly-linked list, determine if the list contains
-    // a cycle. DO NOT use Floyd’s algorithm. FInd some other method for
-    // identifying a cycle
+    /*
+     * Exercise 5.1: Given a singly-linked list, determine if the list contains
+     * a cycle. DO NOT use Floyd’s algorithm. FInd some other method for
+     * identifying a cycle
+     *
+     * Time Complexity:
+     * Space Complexity:
+     */
     public static boolean hasCycleNaive(SinglyLinkedListNode l) {
         // INSERT YOUR CODE HERE
     }
 
-    // Exercise 5.2: Given a singly-linked list, determine if the list contains
-    // a cycle using Floyd's algorithm
+    /*
+     * Exercise 5.2: Given a singly-linked list, determine if the list contains
+     * a cycle using Floyd's algorithm
+     *
+     * Time Complexity:
+     * Space Complexity:
+     */
     public static boolean hasCycle(SinglyLinkedListNode l) {
         // INSERT YOUR CODE HERE
     }

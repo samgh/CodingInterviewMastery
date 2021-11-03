@@ -16,6 +16,9 @@ function SinglyLinkedList() {
     /**
      * A simple node class
      *
+     * Time Complexity:
+     * Space Complexity:
+     *
      * @param{number} n
      */
     function SinglyLinkedListNode(n) {
@@ -25,6 +28,9 @@ function SinglyLinkedList() {
     /**
      * Insert new node at the head of the list
      *
+     * Time Complexity:
+     * Space Complexity:
+     *
      * @param{number} n
      */
     this.insert = function(n) {
@@ -33,6 +39,9 @@ function SinglyLinkedList() {
 
     /**
      * Delete the first occurrence of n from the list
+     *
+     * Time Complexity:
+     * Space Complexity:
      *
      * @param{number} n
      * @return{boolean}
@@ -44,6 +53,9 @@ function SinglyLinkedList() {
     /**
      * Return the number of items in the list
      *
+     * Time Complexity:
+     * Space Complexity:
+     *
      * @return{number}
      */
     this.size = function() {
@@ -52,6 +64,9 @@ function SinglyLinkedList() {
 
     /**
      * Convert the list to a string
+     *
+     * Time Complexity:
+     * Space Complexity:
      *
      * @return{string}
      */
@@ -68,6 +83,9 @@ function DoublyLinkedList() {
     /**
      * A simple node class
      *
+     * Time Complexity:
+     * Space Complexity:
+     *
      * @param{number} n
      */
     function DoublyLinkedListNode(n) {
@@ -77,6 +95,9 @@ function DoublyLinkedList() {
     /**
      * Insert new node at the head of the list
      *
+     * Time Complexity:
+     * Space Complexity:
+     *
      * @param{number} n
      */
     this.insert = function(n) {
@@ -85,6 +106,9 @@ function DoublyLinkedList() {
 
     /**
      * Delete the first occurrence of n from the list
+     *
+     * Time Complexity:
+     * Space Complexity:
      *
      * @param{number} n
      * @return{boolean}
@@ -96,6 +120,9 @@ function DoublyLinkedList() {
     /**
      * Return the number of items in the list
      *
+     * Time Complexity:
+     * Space Complexity:
+     *
      * @return{number}
      */
     this.size = function() {
@@ -104,6 +131,9 @@ function DoublyLinkedList() {
 
     /**
      * Convert the list to a string
+     *
+     * Time Complexity:
+     * Space Complexity:
      *
      * @return{string}
      */

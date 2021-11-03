@@ -32,6 +32,9 @@ function DoublyLinkedListNode(n) {
 /**
  * Exercise 2.1: Write a function that swaps two nodes in a doubly-linked list
  *
+ * Time Complexity:
+ * Space Complexity:
+ *
  * @param{DoublyLinkedListNode} l
  * @param{number} n
  * @param{number} m
@@ -44,6 +47,9 @@ var swapNodes = function(l, n, m) {
  * Exercise 2.2: Write a function that removes the odd-indexed values from a
  * singly-linked list
  *
+ * Time Complexity:
+ * Space Complexity:
+ *
  * @param{SinglyLinkedListNode} l
  */
 var removeOdd = function(l) {
@@ -55,6 +61,9 @@ var removeOdd = function(l) {
  * in a singly-linked list. Your resulting list should have all the even indices
  * first followed by all the odd indices.
  *
+ * Time Complexity:
+ * Space Complexity:
+ *
  * @param{SinglyLinkedListNode} l
  */
 var deinterleave = function(l) {
@@ -63,6 +72,9 @@ var deinterleave = function(l) {
 
 /**
  * Exercise 2.4: Write a function that reverses a singly-linked list
+ *
+ * Time Complexity:
+ * Space Complexity:
  *
  * @param{SinglyLinkedListNode} l
  */
@@ -73,6 +85,9 @@ var reverse = function(l) {
 /**
  * Exercise 3.1: Write a function that compares 2 singly-linked lists and
  * returns true if the two lists are identical
+ *
+ * Time Complexity:
+ * Space Complexity:
  *
  * @param{SinglyLinkedListNode} l1
  * @param{SinglyLinkedListNode} l2
@@ -86,6 +101,9 @@ var areEqual = function(l1, l2) {
  * Exercise 3.2: Write a function that returns the nth-to-last value in a
  * singly-linked list
  *
+ * Time Complexity:
+ * Space Complexity:
+ *
  * @param{SinglyLinkedListNode} l
  * @param{number} n
  * @return{SinglyLinkedListNode}
@@ -98,6 +116,9 @@ var nthToLast = function(l, n) {
  * Exercise 3.3: Write a function that returns the value at the midpoint of
  * a singly-linked list. You can assume the length of the list is odd.
  *
+ * Time Complexity:
+ * Space Complexity:
+ *
  * @param{SinglyLinkedListNode} l
  * @return{SinglyLinkedListNode}
  */
@@ -107,6 +128,9 @@ var midpoint = function(l) {
 
 /**
  * Exercise 4.1: Remove all occurrences of n from a singly-linked list
+ *
+ * Time Complexity:
+ * Space Complexity:
  *
  * @param{SinglyLinkedListNode} l
  * @param{number} n
@@ -121,6 +145,9 @@ var removeAll = function(l, n) {
  * a cycle. DO NOT use Floyd’s algorithm. FInd some other method for identifying
  * a cycle
  *
+ * Time Complexity:
+ * Space Complexity:
+ *
  * @param{SinglyLinkedListNode} l
  * @return{boolean}
  */
@@ -131,6 +158,9 @@ var hasCycleNaive = function(l) {
 /**
  * Exercise 5.2: Given a singly-linked list, determine if the list contains
  * a cycle using Floyd's algorithm
+ *
+ * Time Complexity:
+ * Space Complexity:
  *
  * @param{SinglyLinkedListNode} l
  * @return{boolean}

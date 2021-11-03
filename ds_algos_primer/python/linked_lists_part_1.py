@@ -26,30 +26,45 @@ class SinglyLinkedList:
 
     """
     Constructor
+
+    Time Complexity:
+    Space Complexity:
     """
     def __init__(self):
         # INSERT YOUR CODE HERE
 
     """
     Insert new node at the head of the list
+
+    Time Complexity:
+    Space Complexity:
     """
     def insert(self, n: int):
         # INSERT YOUR CODE HERE
 
     """
     Delete the first occurrence of n from the list
+
+    Time Complexity:
+    Space Complexity:
     """
     def delete(self, n: int) -> bool:
         # INSERT YOUR CODE HERE
 
     """
     Return the number of items in the list
+
+    Time Complexity:
+    Space Complexity:
     """
     def size(self) -> int:
         # INSERT YOUR CODE HERE
 
     """
     Convert the list to a string
+
+    Time Complexity:
+    Space Complexity:
     """
     def __str__(self):
         # INSERT YOUR CODE HERE
@@ -72,30 +87,45 @@ class DoublyLinkedList:
 
     """
     Constructor
+
+    Time Complexity:
+    Space Complexity:
     """
     def __init__(self):
         # INSERT YOUR CODE HERE
 
     """
     Insert node at the front of the list
+
+    Time Complexity:
+    Space Complexity:
     """
     def insert(self, n: int):
         # INSERT YOUR CODE HERE
 
     """
     Delete the first occurrence of n from the list
+
+    Time Complexity:
+    Space Complexity:
     """
     def delete(self, n: int) -> bool:
         # INSERT YOUR CODE HERE
 
     """
     Return the number of items in the list
+
+    Time Complexity:
+    Space Complexity:
     """
     def size(self) -> int:
         # INSERT YOUR CODE HERE
 
     """
     Convert the list to a string
+
+    Time Complexity:
+    Space Complexity:
     """
     def __str__(self):
         # INSERT YOUR CODE HERE
