@@ -8,7 +8,7 @@
  *   Input:
  *      int n   => Total number of steps
  *   Output:
- *      int     -> Total number of unique ways to climb the stairs
+ *      int     => Total number of unique ways to climb the stairs
  *
  *   Execution: javac ClimbStairs.java && java -ea ClimbStairs
  */
@@ -114,6 +114,7 @@ public class ClimbStairs {
         return dp[n];
     }
 
+    // Test cases
     public static void main(String[] args) {
         assert climbStairsBF(5) == 8;
         assert climbStairsTD(5) == 8;
