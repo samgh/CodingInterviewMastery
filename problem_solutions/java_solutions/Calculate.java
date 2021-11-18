@@ -1,127 +1,94 @@
 /*
- *   Title: Basic calculator
+ *   Title: Basic Calculator
+ *   Leetcode Link: https://leetcode.com/problems/basic-calculator/
  *
- *   Problem:
- *      Implement a basic calculator to evaluate a simple expression
- *      string.
+ *   Problem: Implement a basic calculator to evaluate a simple expression
+ *   string.
  *
- *      The expression string may contain open ( and closing parentheses ), the plus +
- *      or minus sign -, non-negative integers and empty spaces .
+ *   The expression string may contain open ( and closing parentheses ), the
+ *   plus + or minus sign -, non-negative integers and empty spaces.
  *
- *   Execution: javac Calculate.java && java Calculate
+ *   Execution: javac Calculate.java && java -ea Calculate
  */
+
 import java.util.*;
 
-
 public class Calculate {
-    public static int evaluateExpr(Stack<Object> stack) {
 
-        int res = 0;
-
-        if (!stack.empty()) {
-            res = (int) stack.pop();
-        }
-
-        // Evaluate the expression till we get corresponding ')'
-        while (!stack.empty() && !((char) stack.peek() == ')')) {
-
-            char sign = (char) stack.pop();
-
-            if (sign == '+') {
-                res += (int) stack.pop();
-            } else {
-                res -= (int) stack.pop();
-            }
-        }
-        return res;
-    }
-
+    /*
+     * We will override this function to compute the sum of a specific range of
+     * our string
+     */
     public static int calculate(String s) {
-
-        int operand = 0;
-        int n = 0;
-        Stack<Object> stack = new Stack<Object>();
-
-        for (int i = s.length() - 1; i >= 0; i--) {
-
-            char ch = s.charAt(i);
-
-            if (Character.isDigit(ch)) {
-
-                // Forming the operand - in reverse order.
-                operand = (int) Math.pow(10, n) * (int) (ch - '0') + operand;
-                n += 1;
-
-            } else if (ch != ' ') {
-                if (n != 0) {
-
-                    // Save the operand on the stack
-                    // As we encounter some non-digit.
-                    stack.push(operand);
-                    n = 0;
-                    operand = 0;
-
-                }
-                if (ch == '(') {
-
-                    int res = evaluateExpr(stack);
-                    stack.pop();
-
-                    // Append the evaluated result to the stack.
-                    // This result could be of a sub-expression within the parenthesis.
-                    stack.push(res);
-
-                } else {
-                    // For other non-digits just push onto the stack.
-                    stack.push(ch);
-                }
-            }
-        }
-
-        //Push the last operand to stack, if any.
-        if (n != 0) {
-            stack.push(operand);
-        }
-
-        // Evaluate any left overs in the stack.
-        return evaluateExpr(stack);
+        return calculate(s, 0, s.length());
     }
 
-    // Using recursion rather than stacks to solve this problem
-    public static int calculateRecursive(String s) {
-        return calculateRecursive(s, 0, s.length());
-    }
-
-    private static int calculateRecursive(String s, int start, int end) {
+    /*
+     * Calculate the sum for a specific range in our string. We do this my just
+     * summing up all the values and keeping track of the sign. If we see a
+     * parenthesis, we find the matching close parenthesis and calculate the
+     * sum of that subexpression first
+     */
+    private static int calculate(String s, int start, int end) {
+        // Track the running sum and current sign
         int sum = 0;
-        char currentSign = '+';
 
+        // This is either 1 or -1. When we see a '-' it gets set to -1 and when
+        // we see a '+' it gets set to 1. That way when we're computing our sum
+        // we always add everything and just multiply our value by currentSign
+        // to get the correct operation
+        int currentSign = 1;
+
+        // Iterate over our string and handle each different type of character
         for (int i = start; i < end; i++) {
-            char currentChar = s.charAt(i);
+            char curr = s.charAt(i);
+            if (curr == ' ') continue;
 
-            if (currentChar == ' ') continue;
-
-            if (currentChar == '+' || currentChar == '-') {
-                currentSign = currentChar;
-                continue;
+            // If we find an open paren, first find the close paren and
+            // calculate what is inside the parentheses first. Then add that to
+            // the sum and move our index to after the parenthesized expression
+            if (curr == '(') {
+                int closeIdx = getMatchingParen(s, i);
+                int innerSum = calculate(s, i+1, closeIdx);
+                sum += currentSign * innerSum;
+                i = closeIdx;
             }
 
-            int nextValue = 0;
+            // If we see a '+' or '-' update the sign
+            if (curr == '+') currentSign = 1;
+            if (curr == '-') currentSign = -1;
 
-            if (Character.isDigit(currentChar)) nextValue = Integer.parseInt(String.valueOf(currentChar));
-            if (currentChar == '(') {
-                int endParen = getMatchingParen(s, i);
-                nextValue = calculateRecursive(s, i+1, endParen);
-                i = endParen;
+            // If we see a digit, get the full number and add it to our result
+            if (Character.isDigit(curr)) {
+                int currVal = getNumber(s, i);
+                sum += currentSign * currVal;
+
+                // We need to skip i to the end of the number so we need to know
+                // how many digits the number is. We can easily do this with log10
+                if (currVal != 0) i+= Math.floor(Math.log10(currVal));
             }
-
-            if (currentSign == '+') sum += nextValue;
-            else sum -= nextValue;
         }
-
         return sum;
     }
 
+    /*
+     * Helper function that gets the number starting at a certain index. We
+     * start at the index and traverse as long as we keep seeing digits
+     */
+    private static int getNumber(String s, int start) {
+        int i = start;
+        for (; i < s.length(); i++) {
+            if (!Character.isDigit(s.charAt(i))) break;
+        }
+
+        return Integer.parseInt(s.substring(start, i));
+    }
+
+    /*
+     * Helper function that gets the matching close parenthesis for a paren at
+     * a given starting index. We do this by keeping a running count of open and
+     * close and waiting until they match up
+     */
     private static int getMatchingParen(String s, int start) {
         int countOpen = 1;
         for (int i = start+1; i < s.length(); i++) {
@@ -132,13 +99,15 @@ public class Calculate {
         return -1;
     }
 
-
+    // Sample test cases
     public static void main(String[] args) {
+        assert calculate("0") == 0;
         assert calculate("1 + 1") == 2;
         assert calculate(" 2-1 + 2 ") == 3;
         assert calculate("(1+(4+5+2)-3)+(6+8)") == 23;
 
+        // ADD YOUR TEST CASES HERE
+
         System.out.println("Passed all test cases");
     }
-
 }

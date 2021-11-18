@@ -1,111 +1,83 @@
 """
-Title: Basic calculator
+Title: Basic Calculator
+Leetcode Link: https://leetcode.com/problems/basic-calculator/
 
-Problem:
-    Implement a basic calculator to evaluate a simple expression string.
+Problem: Implement a basic calculator to evaluate a simple expression string.
 
-    The expression string may contain open ( and closing parentheses ), the
-    plus + or minus sign -, non-negative integers and empty spaces .
+The expression string may contain open ( and closing parentheses ), the
+plus + or minus sign -, non-negative integers and empty spaces.
 
 Execution: python calculate.py
 """
 import unittest
 
-
-def evaluate_expr(stack):
-    """Evaluate expression as stack."""
-    res = stack.pop() if stack else 0
-    # Evaluate the expression till we get corresponding ')'
-    while stack and stack[-1] != ')':
-        sign = stack.pop()
-        if sign == '+':
-            res += stack.pop()
-        else:
-            res -= stack.pop()
-    return res
-
-
-def calculate(s: str) -> int:
-    """Interpret string and calculate."""
-    stack = []
-    n, operand = 0, 0
-
-    for i in range(len(s) - 1, -1, -1):
-        ch = s[i]
-
-        if ch.isdigit():
-
-            # Forming the operand - in reverse order.
-            operand = (10**n * int(ch)) + operand
-            n += 1
-
-        elif ch != " ":
-            if n:
-                # Save the operand on the stack
-                # As we encounter some non-digit.
-                stack.append(operand)
-                n, operand = 0, 0
-
-            if ch == '(':
-                res = evaluate_expr(stack)
-                stack.pop()
-
-                # Append the evaluated result to the stack.  This result could
-                # be of a sub-expression within the parenthesis.
-                stack.append(res)
-
-            # For other non-digits just push onto the stack.
-            else:
-                stack.append(ch)
-
-    # Push the last operand to stack, if any.
-    if n:
-        stack.append(operand)
-
-    # Evaluate any left overs in the stack.
-    return evaluate_expr(stack)
-
-
-# An approach using recursion instead of stacks
-def calculate_recursive(s: str, start: int = 0, end: int = None) -> int:
+"""
+Calculate the sum for a specific range in our string. We do this my just
+summing up all the values and keeping track of the sign. If we see a
+parenthesis, we find the matching close parenthesis and calculate the
+sum of that subexpression first
+"""
+def calculate(s: str, start: int = 0, end: int = None) -> int:
     if end is None:
         end = len(s)
 
-    print (s[start:end])
+    # Track the running sum and current sign
     sum = 0
-    current_sign = '+'
 
+    # This is either 1 or -1. When we see a '-' it gets set to -1 and when we
+    # see a '+' it gets set to 1. That way when we're computing our sum we
+    # always add everything and just multiply our value by currentSign to get
+    # the correct
+    current_sign = 1;
+
+    # Iterate over our string and handle each different type of character
     i = start
     while i < end:
-        current_char = s[i]
+        curr = s[i]
 
-        if current_char == ' ':
-            i = i+1
-            continue
+        # If we find an open paren, first find the close paren and calculate
+        # what is inside the parentheses first. Then add that to the sum and
+        # move our index to after the parenthesized expression
+        if curr == '(':
+            close_idx = get_matching_paren(s, i)
+            inner_sum = calculate(s, i+1, close_idx)
+            sum = sum + current_sign * inner_sum
+            i = close_idx
 
-        if current_char == '+' or current_char == '-':
-            current_sign = current_char
-            i = i+1
-            continue
+        # If we see a '+' or '-' update the sign
+        if curr == '+':
+            current_sign = 1
+        if curr == '-':
+            current_sign = -1
 
-        next_value = 0
-
-        if current_char.isdigit():
-            next_value = int(current_char)
-
-        if current_char == '(':
-            end_paren = get_matching_paren(s, i)
-            next_value = calculate_recursive(s, i+1, end_paren);
-            i = end_paren
-
-        if current_sign == '+':
-            sum = sum + next_value
-        else:
-            sum = sum - next_value
+        # If we see a digit, get the full number and add it to our result
+        if curr.isnumeric():
+            curr_val = get_number(s, i)
+            sum = sum + current_sign * curr_val[0]
+            i = curr_val[1]
 
         i = i+1
+
     return sum
 
+"""
+Helper function that gets the number starting at a certain index. We start at
+the index and traverse as long as we keep seeing digits
+"""
+def get_number(s, start):
+    i = start
+    while i < len(s):
+        if not s[i].isnumeric():
+            break
+        i = i+1
+
+    return (int(s[start:i]), i-1)
+
+"""
+Helper function that gets the matching close parenthesis for a paren at
+a given starting index. We do this by keeping a running count of open and
+close and waiting until they match up
+"""
 def get_matching_paren(s: str, start: int) -> int:
     count_open = 1
     for i in range(start+1, len(s)):
@@ -132,6 +104,8 @@ class TestCalculate(unittest.TestCase):
     def test_3(self):
         """Test for (1+(4+5+2)-3)+(6+8) = 23"""
         self.assertEqual(calculate("(1+(4+5+2)-3)+(6+8)"), 23)
+
+    # ADD TESTS HERE
 
 
 if __name__ == '__main__':
