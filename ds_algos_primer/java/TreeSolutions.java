@@ -43,7 +43,6 @@ public class TreeSolutions {
          * Space Complexity: O(1)
          */
         public void insert(int n) {
-
             // If the tree is empty, make this new node the root
             if (this.root == null) {
                 this.root = new TreeNode(n);
@@ -972,6 +971,10 @@ public class TreeSolutions {
         TreeNode leftList = treeToList(root.left);
         TreeNode rightList = treeToList(root.right);
 
+        // Convert root into a doubly linked list containing just itself
+        root.left = root;
+        root.right = root;
+        
         // Merge linked lists together
         root = mergeLists(leftList, root);
         root = mergeLists(root, rightList);
@@ -993,7 +996,7 @@ public class TreeSolutions {
         b.left = aEnd;
         return a;
     }
-    
+
     // Test cases
     public static void main(String[] args) {
         BinarySearchTree t = new BinarySearchTree();
@@ -1047,11 +1050,15 @@ public class TreeSolutions {
         System.out.println(isBalanced(root));
 
         TreeNode root2 = new TreeNode(3);
-        root.left = new TreeNode(2);
-        root.left.left = new TreeNode(4);
-        root.left.left.right = new TreeNode(5);
+        root2.left = new TreeNode(2);
+        root2.left.left = new TreeNode(4);
+        root2.left.left.right = new TreeNode(5);
         System.out.println(mergeTrees(root, root2).val);
 
         System.out.println(invertTree(root).left.val);
+
+        System.out.println(diameterOfBinaryTree(root));
+
+        System.out.println(treeToList(root));
     }
 }
