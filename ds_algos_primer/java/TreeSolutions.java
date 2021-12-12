@@ -353,8 +353,7 @@ public class TreeSolutions {
 
             // If we found s but the last node is not EndOfWord, then s is a
             // prefix of a word in our trie but not a standalone word
-            if (curr.isEndOfWord) return true;
-            return false;
+            return curr.isEndOfWord;
         }
 
         /*
@@ -586,7 +585,7 @@ public class TreeSolutions {
     private static void postOrderTraversalRecursive(TreeNode curr, List<Integer> result) {
         if (curr == null) return;
 
-        // Pre order, we want to go left, then right, then root
+        // Post order, we want to go left, then right, then root
         postOrderTraversalRecursive(curr.left, result);
         postOrderTraversalRecursive(curr.right, result);
         result.add(curr.val);
@@ -672,20 +671,20 @@ public class TreeSolutions {
     public static List<Integer> levelOrderTraversalIterative(TreeNode root) {
         // Fairly standard BFS implementation. We will use a queue to track
         // which nodes we've visited so far
-        Queue<TreeNode> visited = new LinkedList<>();
-        visited.add(root);
+        Queue<TreeNode> toVisit = new LinkedList<>();
+        toVisit.add(root);
 
         List<Integer> result = new LinkedList<>();
 
         // Get the current node, add it to our result, and then add the children
         // to the queue
-        while (!visited.isEmpty()) {
-            TreeNode curr = visited.remove();
+        while (!toVisit.isEmpty()) {
+            TreeNode curr = toVisit.remove();
             result.add(curr.val);
 
             // Add any existing children to the queue
-            if (curr.left != null) visited.add(curr.left);
-            if (curr.right != null) visited.add(curr.right);
+            if (curr.left != null) toVisit.add(curr.left);
+            if (curr.right != null) toVisit.add(curr.right);
         }
 
         return result;
@@ -974,7 +973,7 @@ public class TreeSolutions {
         // Convert root into a doubly linked list containing just itself
         root.left = root;
         root.right = root;
-        
+
         // Merge linked lists together
         root = mergeLists(leftList, root);
         root = mergeLists(root, rightList);

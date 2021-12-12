@@ -4,6 +4,8 @@ Title: Heap Solutions
 This file contains the solutions for Exercise Sets of the Heap exercises in the
 DS & Algos Primer. If you have not already attempted these exercises, we highly
 recommend you complete them before reviewing the solutions here.
+
+Execution: python heap_solutions.py
 """
 
 from queue import PriorityQueue
