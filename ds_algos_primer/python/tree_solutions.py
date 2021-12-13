@@ -8,6 +8,7 @@ recommend you complete them before reviewing the solutions here.
 Exection: python tree_solutions.py
 """
 
+import queue
 from typing import List
 
 """
@@ -592,11 +593,8 @@ def level_order_traversal_recursive(root: TreeNode) -> List[int]:
     # Recursive call
     level_order_traversal_recursive_inner(root, levels, 0)
 
-    result = []
-    TODO flatten
-    for level in levels:
-        for val in level:
-            result.append(val)
+    # Flatten result 
+    result = [val for level in levels for val in level]
 
     return result
 
@@ -627,24 +625,22 @@ Space Complexity: O(nodes in tree)
 def level_order_traversal_iterative(root: TreeNode) -> List[int]:
     # Fairly standard BFS implementation. We will use a queue to track
     # which nodes we've visited so far
-    to_visit = []
-    to_visit.append(root)
+    to_visit = queue.Queue()
+    to_visit.put(root)
 
     result = []
 
     # Get the current node, add it to our result, and then add the children
     # to the queue
-    while len(to_visit) > 0:
-        TODO queue
-        curr = to_visit[0]
-        to_visit = to_visit[1:]
+    while not to_visit.empty():
+        curr = to_visit.get()
         result.append(curr.val)
 
         # Add any existing children to the queue
         if curr.left:
-            to_visit.append(curr.left)
+            to_visit.put(curr.left)
         if curr.right:
-            to_visit.append(curr.right)
+            to_visit.put(curr.right)
 
     return result
 
@@ -692,16 +688,15 @@ def path_to_node(root: TreeNode, val: int) -> List[int]:
     # If there is a path from the left child to the target, prepend the
     # current value to that path
     if left:
-        TODO append list
         result = [root.val]
-        result.append(left)
+        result.extend(left)
         return result
 
     # If there is a path from the right child to the target, prepend the
     # current value to that path
     if right:
         result = [root.val]
-        result.append(right)
+        result.extend(right)
         return result
 
     # If neither child has a path to the target node, then root doesn't
