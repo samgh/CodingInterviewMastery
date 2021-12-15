@@ -1,9 +1,11 @@
 """
 Title: Heap Solutions
 
-This file contains the template for the Heap exercisess in the DS & Algos
+This file contains the template for the Heap exercises in the DS & Algos
 Primer. If you have not already attempted these exercises, we highly
 recommend you complete them before reviewing the solutions here.
+
+Execution: python heaps.py
 """
 
 from queue import PriorityQueue

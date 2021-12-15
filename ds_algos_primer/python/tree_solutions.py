@@ -593,7 +593,7 @@ def level_order_traversal_recursive(root: TreeNode) -> List[int]:
     # Recursive call
     level_order_traversal_recursive_inner(root, levels, 0)
 
-    # Flatten result 
+    # Flatten result
     result = [val for level in levels for val in level]
 
     return result
@@ -703,6 +703,237 @@ def path_to_node(root: TreeNode, val: int) -> List[int]:
     # have a path either so return None
     return None
 
+"""
+Exercise 4.1: Max Binary Tree Depth
+
+Time Complexity: O(nodes in tree)
+Space Complexity: O(nodes in tree)
+"""
+def max_depth(root: TreeNode) -> int:
+    # If the node is None, the depth is 0
+    if not root:
+        return 0
+
+    # Otherwise, the depth is the max of the depth of the left and right
+    # subtrees plus 1 to include the current node
+    return max(max_depth(root.left), max_depth(root.right)) + 1
+
+"""
+Exercise 4.2: Lowest Common Ancestor
+
+Time Complexity: O(nodes in tree)
+Space Complexity: O(nodes in tree)
+"""
+def lowest_common_ancestor(root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:
+    # Find the path to each node. Then find where the paths diverge and
+    # the last common node is the lowest common ancestor
+    path_to_p = lca_path_to_node(root, p)
+    path_to_q = lca_path_to_node(root, q)
+
+    # Compare the paths to find where they diverge
+    curr = root
+    while path_to_p and path_to_q:
+        if path_to_p[0] == path_to_q[0]:
+            curr = path_to_p.pop()
+            path_to_q.pop()
+        else:
+            break
+
+    return curr
+
+"""
+This is copied from pathToNode and modified to find the nodes rather than
+the values
+"""
+def lca_path_to_node(root: TreeNode, val: TreeNode) -> List[TreeNode]:
+    if not root:
+        return None
+
+    # If we found the value, the path from that node to itself is just [root]
+    if root == val:
+        return [root]
+
+    # Get the paths from the child nodes to the target node
+    left = lca_path_to_node(root.left, val)
+    right = lca_path_to_node(root.right, val)
+
+    # If there is a path from the left child to the target, prepend the
+    # current value to that path
+    if left:
+        left.insert(0, root)
+        return left
+
+    # If there is a path from the right child to the target, prepend the
+    # current value to that path
+    if right:
+        right.insert(0, root)
+        return right
+
+    # If neither child has a path to the target node, then root doesn't
+    # have a path either so return None
+    return None
+
+"""
+Exercise 4.3: Balanced Binary Tree
+
+Time Complexity: O(nodes in tree)
+Space Complexity: O(nodes in tree)
+"""
+def is_balanced(root: TreeNode) -> bool:
+    return is_balanced_inner(root)[0]
+
+"""
+Compute whether subtree is balanced and also get the height of the
+subtree. Easy to do this by passing an array with the height and
+updating the value
+"""
+def is_balanced_inner(root: TreeNode) -> (bool, int):
+    # If None, the tree is balanced and height 0
+    if not root:
+        return True, 0
+
+    left = is_balanced_inner(root.left)
+    right = is_balanced_inner(root.right)
+
+    # See if left and right subtrees are balanced
+    if not left[0] or not right[0]:
+        return False, 0
+
+    # If they are, make sure the full tree is balanced
+    if abs(left[1] - right[1]) > 1:
+        return False, 0
+
+    return True, max(left[1], right[1])+1
+
+"""
+Exercise 4.4: Merge Binary Trees
+
+Time Complexity: O(nodes in t1 + nodes in t2)
+Space Complexity: O(max(nodes in t1, nodes in t2))
+"""
+def merge_trees(t1: TreeNode, t2: TreeNode) -> TreeNode:
+    # If trees are None, merged tree is also None
+    if not t1 and not t2:
+        return None
+
+    # To save duplicate work, if one node is None, make sure it's always t2
+    if not t1:
+        t1 = t2
+        t2 = None
+
+    # If we have one None node, traverse the tree that is still non-None
+    # and add it as-is to the result tree
+    if not t2:
+        curr = TreeNode(t1.val)
+
+        # If t2 is None, the children will also be null
+        curr.left = merge_trees(t1.left, None)
+        curr.right = merge_trees(t1.right, None)
+        return curr
+
+    # If both nodes are non-null, the current node should have the sum of
+    # both values, and then recursively merge the two subtrees
+    curr = TreeNode(t1.val + t2.val)
+    curr.left = merge_trees(t1.left, t2.left)
+    curr.right = merge_trees(t1.right, t2.right)
+
+    return curr
+
+"""
+Exercise 4.5 Invert Binary Tree
+
+Time Complexity: O(nodes in tree)
+Space Complexity: O(nodes in tree)
+"""
+def invert_tree(root: TreeNode) -> TreeNode:
+    # If None, inverted tree is None
+    if not root:
+        return None
+
+    left = root.left
+    right = root.right
+
+    # Point the left pointer to the inverted right subtree and vice versa
+    root.left = invert_tree(right)
+    root.right = invert_tree(left)
+    return root
+
+"""
+Exercise 4.6: Diameter of Binary Tree
+
+Time Complexity: O(nodes in tree)
+Space Complexity: O(nodes in tree)
+"""
+def diameter_of_binary_tree(root: TreeNode) -> int:
+    # Note: We have to subtract 1 at the end here because we are computing
+    # the number of nodes in the diameter, whereas we actually want the
+    # number of edges in the diameter, which is 1 less
+    return diameter_of_binary_tree_inner(root)[0] - 1
+
+"""
+Inner recursive function
+"""
+def diameter_of_binary_tree_inner(root: TreeNode) -> (int, int):
+    # Base Case. If root is None, diameter of empty tree is 0
+    if not root:
+        return 0,0
+
+    # Compute diameters
+    left = diameter_of_binary_tree_inner(root.left)
+    right = diameter_of_binary_tree_inner(root.right)
+
+    # The diameter is either the max diameter of the left and right
+    # subtrees (doesn't go through the current node) or the height of the
+    # left and right + 1 (does go through the current node)
+    diam = max(left[0], right[0]) + 1
+    diam = max(diam, left[1] + right[1] + 1)
+
+    # Return diameter and max height of subtree
+    return diam, max(left[1], right[1]) + 1
+
+"""
+Exercise 4.7: Tree to Linked List
+
+Time Complexity: O(nodes in tree)
+Space Complexity: O(nodes in tree)
+"""
+def tree_to_list(root: TreeNode) -> TreeNode:
+    # If node is None, list is None
+    if not root:
+        return None
+
+    # Convert left and right subtrees into doubly linked lists
+    left_list = tree_to_list(root.left)
+    right_list = tree_to_list(root.right)
+
+    # Convert root into a doubly linked list containing just itself
+    root.left = root
+    root.right = root
+
+    # Merge linked lists together
+    root = merge_lists(left_list, root)
+    root = merge_lists(root, right_list)
+
+    return root
+
+"""
+Helper fucntion that merges 2 doubly linked lists into a single list
+"""
+def merge_lists(a: TreeNode, b: TreeNode) -> TreeNode:
+    if not a:
+        return b
+    if not b:
+        return a
+
+    a_end = a.left
+    b_end = b.left
+
+    a.left = b_end
+    b_end.right = a
+    a_end.right = b
+    b.left = a_end
+    return a
+
 
 if __name__ == '__main__':
     t = BinarySearchTree();
@@ -755,20 +986,19 @@ if __name__ == '__main__':
 
     print(contains_value(root, 4));
     print(path_to_node(root, 4));
-    """
-    System.out.println(maxDepth(root));
-    System.out.println(lowestCommonAncestor(root, root.left.left, root.left).val);
-    System.out.println(isBalanced(root));
 
-    TreeNode root2 = new TreeNode(3);
-    root2.left = new TreeNode(2);
-    root2.left.left = new TreeNode(4);
-    root2.left.left.right = new TreeNode(5);
-    System.out.println(mergeTrees(root, root2).val);
+    print(max_depth(root));
+    print(lowest_common_ancestor(root, root.left.left, root.left).val);
+    print(is_balanced(root));
 
-    System.out.println(invertTree(root).left.val);
 
-    System.out.println(diameterOfBinaryTree(root));
+    root2 = TreeNode(3);
+    root2.left = TreeNode(2);
+    root2.left.left = TreeNode(4);
+    root2.left.left.right = TreeNode(5);
+    print(merge_trees(root, root2).val);
 
-    System.out.println(treeToList(root));
-"""
+    print(invert_tree(root).left.val);
+
+    print(diameter_of_binary_tree(root));
+    print(tree_to_list(root));

@@ -525,3 +525,5 @@ if __name__ == '__main__':
     print(find_all_anagrams("cbaebabacd", "abc"))
 
     print(smallest_substring("aabbccdd", "abc"))
+
+    print(two_sum([1,3,3,3,5], 6))
