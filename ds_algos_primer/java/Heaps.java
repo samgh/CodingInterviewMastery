@@ -1,11 +1,11 @@
 /*
- *   Title: HeapSolutions.java
+ *   Title: Heaps.java
  *
  *   This file contains the template for the Heap exercises in
  *   the DS & Algos Primer. Fill in the exercises here and refer to
- *   ArraysAndStringsSolutions.java for the complete code samples.
+ *   HeapSolutions.java for the complete code samples.
  *
- *   Execution: javac HeapSolutions.java && java -ea HeapSolutions
+ *   Execution: javac Heaps.java && java -ea Heaps
  */
 
 import java.util.*;
