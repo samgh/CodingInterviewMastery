@@ -275,13 +275,13 @@ var cloneGraph = function(node) {
     traverseAllNodes(node, nodes);
 
     // We have all of our nodes, now go through and add all the edges
-    nodes.forEach(function(value, key) {
+    nodes.forEach(function(newNode, oldNode) {
         // key is our old node and value is our new node. To get the edges
         // for newNode, we need to find the edges for the old node and
         // then look up what the corresponding node is in our new graph
 
-        key.neighbors.forEach(function(neighbor) {
-            value.neighbors.push(nodes.get(neighbor));
+        oldNode.neighbors.forEach(function(neighbor) {
+            newNode.neighbors.push(nodes.get(neighbor));
         });
     });
 
@@ -422,19 +422,32 @@ var validPathMatrixInner = function(n, edges, start, end, visited) {
  * @return{number}
  */
 var lengthOfShortestPath = function(edges, start, end) {
+    // For BFS, we use a queue
     var toVisit = [];
+
+    // We need to track the level of each node in our BFS so when we find
+    // our target, we know what the length of the path is
     nodeDepth = {};
 
+    // Initialize both with our start node
     toVisit.push(start);
     nodeDepth[start] = 1;
 
+    // Do our BFS
     while (toVisit.length != 0) {
         var curr = toVisit.shift();
+
+        // If we found the destination, return depth
         if (curr == end) return nodeDepth[curr];
 
+        // Otherwise add all the neighbors to the queue to visit
         edges[curr].forEach(function(e) {
+            // Make sure we haven't already visited the node
             if (!(e in nodeDepth)) {
                 toVisit.push(e);
+
+                // The distance to any node is the distance to the previous
+                // node + 1
                 nodeDepth[e] = nodeDepth[curr] + 1;
             }
         });
@@ -549,7 +562,6 @@ var allPathsInner = function(edges, start, end, visited, result, currPath) {
 
     // Try traversing every edge
     edges[start].forEach(function(e) {
-        // console.log(e);
         // Check that we haven't visited the node
         if (!(visited.has(e))) {
             // Update the path and visited, then make recursive call
@@ -562,8 +574,6 @@ var allPathsInner = function(edges, start, end, visited, result, currPath) {
             visited.delete(e);
         }
     });
-
-    return;
 }
 
 /**
@@ -783,8 +793,7 @@ var keysAndRooms = function(rooms) {
     // the keys in each room. BFS is a simpler implementation but we could
     // do either BFS or DFS
     var visited = new Set();
-    var toVisit = [];
-    toVisit.push(0);
+    var toVisit = [0];
 
     // Do the search
     while (toVisit.length != 0) {
@@ -810,6 +819,7 @@ var keysAndRooms = function(rooms) {
  * @param{string[][]} equations
  * @param{number[]} values
  * @param{string[][]} queries
+ * @return{number[]}
  */
 var evaluateDivision = function(equations, values, queries) {
     // For each query, do DFS to determine series of operations required

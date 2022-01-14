@@ -370,19 +370,32 @@ public class GraphSolutions {
      * Space Complexity: O(V)
      */
     public static int lengthOfShortestPath(List<List<Integer>> edges, int start, int end) {
+        // For BFS, we use a queue
         Queue<Integer> toVisit = new LinkedList<>();
+
+        // We need to track the level of each node in our BFS so when we find
+        // our target, we know what the length of the path is
         Map<Integer, Integer> nodeDepth = new HashMap<>();
 
+        // Initialize both with our start node
         toVisit.add(start);
         nodeDepth.put(start, 1);
 
+        // Do our BFS
         while(!toVisit.isEmpty()) {
             int curr = toVisit.remove();
+
+            // If we found the destination, return depth
             if (curr == end) return nodeDepth.get(curr);
 
+            // Otherwise add all the neighbors to the queue to visit
             for (int e : edges.get(curr)) {
+                // Make sure we haven't already visited the node
                 if (!nodeDepth.containsKey(e)) {
                     toVisit.add(e);
+
+                    // The distance to any node is the distance to the previous
+                    // node + 1
                     nodeDepth.put(e, nodeDepth.get(curr)+1);
                 }
             }
@@ -491,8 +504,6 @@ public class GraphSolutions {
                 visited.remove(e);
             }
         }
-
-        return;
     }
 
     /*
