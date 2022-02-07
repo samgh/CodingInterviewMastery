@@ -192,8 +192,9 @@ var areEqual = function(l1, l2) {
         l2 = l2.next;
     }
 
-    // If there are no values that don't match, the lists are equal
-    return true;
+    // If there are no values that don't match and neither list
+    // ended before the other, the lists are equal
+    return l1 == null && l2 == null;
 }
 
 /**
