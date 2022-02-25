@@ -184,7 +184,7 @@ public class LinkedListSolutionsPart2 {
         }
 
         // If there are no values that don't match, the lists are equal
-        return true;
+        return l1 == null && l2 == null;
     }
 
     /*

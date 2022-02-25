@@ -175,7 +175,7 @@ def are_equal(l1: SinglyLinkedListNode, l2: SinglyLinkedListNode) -> bool:
         l2 = l2.next
 
     # If there are no values that don't match, the lists are equal
-    return True
+    return not l1 and not l2
 
 """
 Exercise 3.2: Write a function that returns the nth-to-last value in a
