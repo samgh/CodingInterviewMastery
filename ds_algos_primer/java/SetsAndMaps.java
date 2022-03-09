@@ -149,7 +149,7 @@ public class SetAndMapSolutions {
         }
 
         /*
-         * Resize the backing array to the new capacity
+         * Exercise 2.2: Resize the backing array to the new capacity
          *
          * Time Complexity:
          * Space Complexity:

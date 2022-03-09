@@ -246,7 +246,7 @@ public class SetAndMapSolutions {
         }
 
         /*
-         * Resize the backing array to the new capacity
+         * Exercise 2.2: Resize the backing array to the new capacity
          *
          * Time Complexity: O(capacity + size(map) * average value length)
          * Space Complexity: O(1)
