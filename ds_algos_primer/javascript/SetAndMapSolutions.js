@@ -223,12 +223,10 @@ function MyHashMap(capacity) {
         // Get the bucket index
         var idx = key.hashCode(data.length);
 
-        // Find the map entry that needs to be removed
+        // Find and remove the map entry that needs to be removed
         for (var i = 0; i < data[idx].length; i++) {
             if (data[idx][i][0] == key) {
-                console.log(data[idx]);
                 data[idx].splice(i,1);
-                console.log(data[idx]);
                 size--;
                 return;
             }

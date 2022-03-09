@@ -1,11 +1,11 @@
 /*
- *   Title: SetAndMapSolutions
+ *   Title: SetsAndMaps
  *
- *   This file contains the solutions for the Set and Map exercises in
- *   the DS & Algos Primer. If you have not already attempted these exercises,
- *   we highly recommend you complete them before reviewing the solutions here.
+ *   This file contains the template for the Set and Map exercises in
+ *   the DS & Algos Primer. Fill in the exercises here and refer to
+ *   S.java for the complete code samples.
  *
- *   Execution: node SetAndMapSolutions.js
+ *   Execution: node SetsAndMaps.js
  */
 
 /**

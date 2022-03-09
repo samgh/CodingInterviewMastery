@@ -315,6 +315,7 @@ def basic_calculator(s: str) -> int:
 
     return sum
 
+# Test Cases
 if __name__ == '__main__':
     s = MyStack()
     s.push(1)
