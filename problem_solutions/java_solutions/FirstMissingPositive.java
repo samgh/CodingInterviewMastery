@@ -1,63 +1,64 @@
 /*
- *   Title: First missing positive.
+ *   Title: First Missing Positive
+ *   Leetcode Link: https://leetcode.com/problems/first-missing-positive/
  *
  *   Problem: Given an unsorted integer array, find the smallest missing
  *   positive integer.
  *
- *   Execution: javac FirstMissingPositive.java && java FirstMissingPositive
+ *
+ *   Input:
+ *      int[] nums  => the input array
+ *   Output:
+ *      int         => the first missing positive value
+ *
+ *   Execution: javac FirstMissingPositive.java && java -ea FirstMissingPositive
  */
+
 import java.util.*;
 
 
 public class FirstMissingPositive {
 
-    public static int firstMissingPositive(int[] A) {
-        for (int i = 0; i < A.length; i++) {
-            if (A[i] <= 0 || A[i] > A.length) A[i] = Integer.MAX_VALUE;
+    /*
+     * We will use the sign of the value at each index to indicate whether that
+     * index value is in the array or not. This way we can track which values
+     * are in our array without using extra space
+     */
+    public static int firstMissingPositive(int[] nums) {
+        // Any negative values cannot be our smallest positive integer and they
+        // will mess us up, so set any negative values to MAX_VALUE
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] <= 0) nums[i] = Integer.MAX_VALUE;
         }
 
-        for (int i = 0; i < A.length; i++) {
-            int abs = Math.abs(A[i]);
-            if (abs <= A.length) A[abs-1] = -Math.abs(A[abs-1]);
+        // For each value, convert it to an index in our array. If that index is
+        // in th earray and is positive, invert the value to indicate that that
+        // value is in our array
+        for (int i = 0; i < nums.length; i++) {
+            int abs = Math.abs(nums[i]);
+
+            // Make sure that we're in the range of the array and if so invert
+            // the value
+            if (abs <= nums.length) nums[abs-1] = -Math.abs(nums[abs-1]);
         }
 
-        for (int i = 0; i < A.length; i++) {
-            if (A[i] > 0) return i+1;
+        // Find the first non-negative index and that is our result
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] > 0) return i+1;
         }
 
-        return A.length+1;
+        // If values 1-N are in the array, our next value is N+1
+        return nums.length+1;
     }
 
-    // Alternate implementation
-    public static int firstMissingPositiveAlt(int[] A) {
-        int i = 0;
-        while(i < A.length){
-            if(A[i] == i+1 || A[i] <= 0 || A[i] > A.length) i++;
-            else if(A[A[i]-1] != A[i]) swap(A, i, A[i]-1);
-            else i++;
-        }
-        i = 0;
-        while(i < A.length && A[i] == i+1) i++;
-        return i+1;
-    }
-
-    private static void swap(int[] A, int i, int j){
-        int temp = A[i];
-        A[i] = A[j];
-        A[j] = temp;
-    }
-
+    // Sample test cases
     public static void main(String[] args) {
-        int[] test_input_1 = {1, 2, 0};
-        assert firstMissingPositive(test_input_1) == 3;
+        assert firstMissingPositive(new int[]{1, 2, 0}) == 3;
 
-        int[] test_input_2 = {3, 4, -1, 1};
-        assert firstMissingPositive(test_input_2) == 2;
+        assert firstMissingPositive(new int[]{3, 4, -1, 1}) == 2;
 
-        int[] test_input_3 = {7, 8, 9, 11, 12};
-        assert firstMissingPositive(test_input_3) == 1;
+        assert firstMissingPositive(new int[]{7, 8, 9, 11, 12}) == 1;
 
         System.out.println("Passed all test cases");
     }
-
 }
