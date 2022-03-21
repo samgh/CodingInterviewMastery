@@ -30,7 +30,88 @@ public class ArraysAndStringsSolutions {
     }
 
     /*
-     * Exercise 1.2: Given a 2D matrix, write a function to print the values in
+     * Exercise 1.2: Write a function that takes in a string and removes every
+     * even-indexed character
+     *
+     * Time Complexity: O(s.length())
+     * Space Complexity: O(s.length())
+     */
+    public static String removeEven(String s) {
+        // A StringBuilder is ideal here since strings are immutable. Could also
+        // use a char[] and convert it to a string
+        StringBuilder sb = new StringBuilder();
+
+        // Increment by 2 each time to only visit odd indices
+        for (int i = 1; i < s.length(); i=i+2) {
+            sb.append(s.charAt(i));
+        }
+
+        return sb.toString();
+    }
+
+    /*
+     * Exercises 1.3: Zig Zag Conversion
+     * Full Problem Definition: https://leetcode.com/problems/zigzag-conversion/
+     *
+     * Time Complexity: O(s.length())
+     * Space Complexity: O(s.length())
+     */
+    public static String zigZag(String s, int numRows) {
+        // We'll compute each row and then merge them all together at the end
+        StringBuilder[] rows = new StringBuilder[numRows];
+        for (int i = 0; i < rows.length; i++) rows[i] = new StringBuilder();
+
+        // We have 2 actions. First we iterate down over each row, then we
+        // iterate back up. Do one then the other.
+        int idx = 0;
+        while (idx < s.length()) {
+            // Iterate from row 0 to numRows-1
+            for (int i = 0; i < rows.length && idx < s.length(); i++) {
+                rows[i].append(s.charAt(idx++));
+            }
+
+            // Iterate back up from numRows-2 to 1. Make sure we go from
+            // numRows-2 to 1 and not numRows-1 to 0 because otherwise we'll
+            // add 2 characters to row 0 and 2 characters to row numRows-1
+            for (int i = rows.length-2; i >= 1 && idx < s.length(); i--) {
+                rows[i].append(s.charAt(idx++));
+            }
+        }
+
+        // Combine all the strings together
+        StringBuilder result = new StringBuilder();
+        for (StringBuilder row : rows) result.append(row);
+
+        return result.toString();
+    }
+
+    /*
+     * Exercise 1.4: Given a 2D matrix, write a function to print the values
+     * going back and forth across each row
+     *
+     * Time Complexity: O(arr.length * arr[0].length)
+     * Space Complexity: O(1)
+     */
+    public static void printBackAndForth(int[][] arr) {
+        // Iterate 2 rows at a time and go across and back
+        for (int i = 0; i < arr.length; i=i+2) {
+            // Iterate across to the right
+            for (int j = 0; j < arr[i].length; j++) {
+                System.out.println(arr[i][j]);
+            }
+
+            // If iterating across to the right was the last row, end, otherwise
+            // iterate back across to the right
+            if (i+1 < arr.length) {
+                for (int j = arr[i+1].length-1; j >= 0; j--) {
+                    System.out.println(arr[i+1][j]);
+                }
+            }
+        }
+    }
+
+    /*
+     * Exercise 1.5: Given a 2D matrix, write a function to print the values in
      * the matrix in a clockwise spiral from outside to inside
      *
      * Time Complexity: O(arr.length * arr[0].length)
@@ -76,7 +157,7 @@ public class ArraysAndStringsSolutions {
     }
 
     /*
-     * Exercise 1.3: Given a 2D matrix, write a function to print the values in
+     * Exercise 1.6: Given a 2D matrix, write a function to print the values in
      * the matrix in a zig-zag order
      *
      * Time Complexity: O(arr.length * arr[0].length)
@@ -125,62 +206,6 @@ public class ArraysAndStringsSolutions {
             else if (row+1 < arr.length) row++;
             else col++;
         }
-    }
-
-    /*
-     * Exercise 1.4: Write a function that takes in a string and removes every
-     * even-indexed character
-     *
-     * Time Complexity: O(s.length())
-     * Space Complexity: O(s.length())
-     */
-    public static String removeEven(String s) {
-        // A StringBuilder is ideal here since strings are immutable. Could also
-        // use a char[] and convert it to a string
-        StringBuilder sb = new StringBuilder();
-
-        // Increment by 2 each time to only visit odd indices
-        for (int i = 1; i < s.length(); i=i+2) {
-            sb.append(s.charAt(i));
-        }
-
-        return sb.toString();
-    }
-
-    /*
-     * Exercises 1.5: Zig Zag Conversion
-     * Full Problem Definition: https://leetcode.com/problems/zigzag-conversion/
-     *
-     * Time Complexity: O(s.length())
-     * Space Complexity: O(s.length())
-     */
-    public static String zigZag(String s, int numRows) {
-        // We'll compute each row and then merge them all together at the end
-        StringBuilder[] rows = new StringBuilder[numRows];
-        for (int i = 0; i < rows.length; i++) rows[i] = new StringBuilder();
-
-        // We have 2 actions. First we iterate down over each row, then we
-        // iterate back up. Do one then the other.
-        int idx = 0;
-        while (idx < s.length()) {
-            // Iterate from row 0 to numRows-1
-            for (int i = 0; i < rows.length && idx < s.length(); i++) {
-                rows[i].append(s.charAt(idx++));
-            }
-
-            // Iterate back up from numRows-2 to 1. Make sure we go from
-            // numRows-2 to 1 and not numRows-1 to 0 because otherwise we'll
-            // add 2 characters to row 0 and 2 characters to row numRows-1
-            for (int i = rows.length-2; i >= 1 && idx < s.length(); i--) {
-                rows[i].append(s.charAt(idx++));
-            }
-        }
-
-        // Combine all the strings together
-        StringBuilder result = new StringBuilder();
-        for (StringBuilder row : rows) result.append(row);
-
-        return result.toString();
     }
 
     /*
@@ -506,13 +531,19 @@ public class ArraysAndStringsSolutions {
                 matrix[i][j] = val++;
             }
         }
-        printSpiral(matrix);
-
-        printDiagonals(matrix);
 
         System.out.println(removeEven("iloveinterviewprep"));
 
         System.out.println(zigZag("PAYPALISHIRING", 3));
+
+        printBackAndForth(matrix);
+
+
+        printSpiral(matrix);
+
+        printDiagonals(matrix);
+
+
 
         printSubstrings("abcd");
 

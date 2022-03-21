@@ -39,7 +39,83 @@ def reverse_array(arr: List[int]):
         arr[len(arr)-i-1] = temp
 
 """
-Exercise 1.2: Given a 2D matrix, write a function to print the values in
+Exercise 1.2: Write a function that takes in a string and removes every
+even-indexed character
+
+Time Complexity: O(len(s))
+Space Complexity: O(len(s))
+"""
+def remove_even(s: str) -> str:
+    # Build the string as a list first and then join everything together
+    result = []
+
+    # Increment by 2 each time to only visit odd indices
+    for i in range(1, len(s), 2):
+        result.append(s[i])
+
+    return ''.join(result)
+
+"""
+Exercises 1.3: Zig Zag Conversion
+Full Problem Definition: https://leetcode.com/problems/zigzag-conversion/
+
+Time Complexity: O(len(s))
+Space Complexity: O(len(s))
+"""
+def zig_zag(s: str, num_rows: int) -> str:
+    # Compute each row and then merge them at the end
+    rows = [ [] for _ in range(num_rows)]
+
+    # We have 2 actions. First we iterate down over each row, then we iterate
+    # back up. Do one then the other
+    idx = 0
+    while idx < len(s):
+        # Iterate from row 0 to num_rows-1
+        i = 0
+        while i < len(rows) and idx < len(s):
+            rows[i].append(s[idx])
+            idx = idx+1
+            i = i+1
+
+        # Iterate back up from numRows-2 to 1. Make sure we go from numRows-2 to
+        # 1 and not numRows-1 to 0 because otherwise we'll add 2 characters to
+        # row 0 and 2 characters to row numRows-1
+        i = len(rows)-2
+        while i >= 1 and idx < len(s):
+            rows[i].append(s[idx])
+            idx = idx+1
+            i = i-1
+
+    # Combine everything together
+    result = []
+    for row in rows:
+        result.append(''.join(row))
+
+    return ''.join(result)
+
+"""
+Exercise 1.4: Given a 2D matrix, write a function to print the values
+going back and forth across each row
+
+Time Complexity: O(arr.length * arr[0].length)
+Space Complexity: O(1)
+"""
+def print_back_and_forth(arr: List[List[int]]):
+    # Iterate 2 rows at a time and go across and back
+    for i in range(0, len(arr), 2):
+        # Iterate across to the right
+        for j in range(len(arr[i])):
+            print(arr[i][j])
+
+        # If iterating across to the right was the last row, end, otherwise
+        # iterate back across to the right
+        if i+1 < len(arr):
+            for j in range(len(arr[i+1])-1, -1, -1):
+                print(arr[i+1][j])
+
+
+"""
+Exercise 1.5: Given a 2D matrix, write a function to print the values in
 the matrix in a clockwise spiral from outside to inside
 
 Time Complexity: O(len(arr) * len(arr[0]))
@@ -79,7 +155,7 @@ def print_spiral(arr: List[List[int]]):
         min_col = min_col+1
 
 """
-Exercise 1.3: Given a 2D matrix, write a function to print the values in the
+Exercise 1.6: Given a 2D matrix, write a function to print the values in the
 matrix in a zig-zag order
 
 Time Complexity: O(len(arr) * len(arr[0]))
@@ -133,61 +209,6 @@ def print_diagonals(arr: List[List[int]]):
             row = row+1
         else:
             col = col+1
-
-"""
-Exercise 1.4: Write a function that takes in a string and removes every
-even-indexed character
-
-Time Complexity: O(len(s))
-Space Complexity: O(len(s))
-"""
-def remove_even(s: str) -> str:
-    # Build the string as a list first and then join everything together
-    result = []
-
-    # Increment by 2 each time to only visit odd indices
-    for i in range(1, len(s), 2):
-        result.append(s[i])
-
-    return ''.join(result)
-
-"""
-Exercises 1.5: Zig Zag Conversion
-Full Problem Definition: https://leetcode.com/problems/zigzag-conversion/
-
-Time Complexity: O(len(s))
-Space Complexity: O(len(s))
-"""
-def zig_zag(s: str, num_rows: int) -> str:
-    # Compute each row and then merge them at the end
-    rows = [ [] for _ in range(num_rows)]
-
-    # We have 2 actions. First we iterate down over each row, then we iterate
-    # back up. Do one then the other
-    idx = 0
-    while idx < len(s):
-        # Iterate from row 0 to num_rows-1
-        i = 0
-        while i < len(rows) and idx < len(s):
-            rows[i].append(s[idx])
-            idx = idx+1
-            i = i+1
-
-        # Iterate back up from numRows-2 to 1. Make sure we go from numRows-2 to
-        # 1 and not numRows-1 to 0 because otherwise we'll add 2 characters to
-        # row 0 and 2 characters to row numRows-1
-        i = len(rows)-2
-        while i >= 1 and idx < len(s):
-            rows[i].append(s[idx])
-            idx = idx+1
-            i = i-1
-
-    # Combine everything together
-    result = []
-    for row in rows:
-        result.append(''.join(row))
-
-    return ''.join(result)
 
 """
 Exercise 2.1: Given a string, print out all of the substrings
@@ -497,14 +518,16 @@ if __name__ == '__main__':
     reverse_array(l)
     print(l)
 
-    matrix = [[1,2,3,4,5],[6,7,8,9,10],[11,12,13,14,15],[16, 17,18,19,20]]
-    print_spiral(matrix)
-
-    print_diagonals(matrix)
-
     print(remove_even("abcdef"))
 
     print(zig_zag("PAYPALISHIRING", 3))
+
+    matrix = [[1,2,3,4,5],[6,7,8,9,10],[11,12,13,14,15],[16, 17,18,19,20]]
+    print_back_and_forth(matrix)
+
+    print_spiral(matrix)
+
+    print_diagonals(matrix)
 
     print_substrings("abcde")
 

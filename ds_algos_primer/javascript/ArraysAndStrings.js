@@ -21,33 +21,7 @@ var reverseArray = function(arr) {
 }
 
 /**
- * Exercise 1.2: Given a 2D matrix, write a function to print the values in the
- * matrix in a clockwise spiral from outside to inside
- *
- * Time Complexity:
- * Space Complexity:
- *
- * @param {number[][]} arr
- */
-var printSpiral = function(arr) {
-    // INSERT YOUR SOLUTION HERE
-}
-
-/**
- * Exercise 1.3: Given a 2D matrix, write a function to print the values in the
- * matrix in a zig-zag order
- *
- * Time Complexity:
- * Space Complexity:
- *
- * @param{number[][]} arr
- */
-var printDiagonals = function(arr) {
-    // INSERT YOUR SOLUTION HERE
-}
-
-/**
- * Exercise 1.4: Write a function that takes in a string and removes every
+ * Exercise 1.2: Write a function that takes in a string and removes every
  * even-indexed character
  *
  * Time Complexity:
@@ -61,7 +35,7 @@ var removeEven = function(s) {
 }
 
 /**
- * Exercises 1.5: Zig Zag Conversion
+ * Exercises 1.3: Zig Zag Conversion
  * Full Problem Definition: https://leetcode.com/problems/zigzag-conversion/
  *
  * Time Complexity:
@@ -72,6 +46,45 @@ var removeEven = function(s) {
  * @return{string}
  */
 var zigZag = function(s, numRows) {
+    // INSERT YOUR SOLUTION HERE
+}
+
+/**
+ * Exercise 1.4: Given a 2D matrix, write a function to print the values
+ * going back and forth across each row
+ *
+ * Time Complexity:
+ * Space Complexity:
+ *
+ * @param {number[][]} arr
+ */
+var printBackAndForth = function(arr) {
+    // INSERT YOUR SOLUTION HERE
+}
+
+/**
+ * Exercise 1.5: Given a 2D matrix, write a function to print the values in the
+ * matrix in a clockwise spiral from outside to inside
+ *
+ * Time Complexity:
+ * Space Complexity:
+ *
+ * @param {number[][]} arr
+ */
+var printSpiral = function(arr) {
+    // INSERT YOUR SOLUTION HERE
+}
+
+/**
+ * Exercise 1.6: Given a 2D matrix, write a function to print the values in the
+ * matrix in a zig-zag order
+ *
+ * Time Complexity:
+ * Space Complexity:
+ *
+ * @param{number[][]} arr
+ */
+var printDiagonals = function(arr) {
     // INSERT YOUR SOLUTION HERE
 }
 

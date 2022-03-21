@@ -27,7 +27,101 @@ var reverseArray = function(arr) {
 }
 
 /**
- * Exercise 1.2: Given a 2D matrix, write a function to print the values in the
+ * Exercise 1.2: Write a function that takes in a string and removes every
+ * even-indexed character
+ *
+ * Time Complexity: O(s.length())
+ * Space Complexity: O(s.length())
+ *
+ * @param{string} s
+ * @return{string}
+ */
+var removeEven = function(s) {
+    // It is more complexity-efficient for us to add all the characters to an
+    // array and join them at the end
+    var charArray = []
+
+    // Increment by 2 each time to only visit odd indices
+    for (var i = 1; i < s.length; i=i+2) {
+        charArray.push(s[i]);
+    }
+
+    return charArray.join("");
+}
+
+/**
+ * Exercises 1.3: Zig Zag Conversion
+ * Full Problem Definition: https://leetcode.com/problems/zigzag-conversion/
+ *
+ * Time Complexity: O(s.length())
+ * Space Complexity: O(s.length())
+ *
+ * @param{string} s
+ * @param{number} numRows
+ * @return{string}
+ */
+var zigZag = function(s, numRows) {
+    // We'll compute each row and then merge them all together at the end
+    var rows = []
+    for (var i = 0; i < numRows; i++) rows.push([]);
+
+    // We have 2 actions. First we iterate down over each row, then we
+    // iterate back up. Do one then the other.
+    var idx = 0;
+    while (idx < s.length) {
+        // Iterate from row 0 to numRows-1
+        for (var i = 0; i < rows.length && idx < s.length; i++) {
+            rows[i].push(s[idx++]);
+        }
+
+        // Iterate back up from numRows-2 to 1. Make sure we go from
+        // numRows-2 to 1 and not numRows-1 to 0 because otherwise we'll
+        // add 2 characters to row 0 and 2 characters to row numRows-1
+        for (var i = rows.length-2; i >= 1 && idx < s.length; i--) {
+            rows[i].push(s[idx++]);
+        }
+    }
+
+    // Combine all the rows together
+    var result = [];
+    rows.forEach(function(r) {
+        r.forEach(function(c) {
+            result.push(c);
+        });
+    });
+
+    return result.join("");
+}
+
+/**
+ * Exercise 1.4: Given a 2D matrix, write a function to print the values
+ * going back and forth across each row
+ *
+ * Time Complexity: O(arr.length * arr[0].length)
+ * Space Complexity: O(1)
+ *
+ * @param {number[][]} arr
+ */
+var printBackAndForth = function(arr) {
+    // Iterate 2 rows at a time and go across and back
+    for (var i = 0; i < arr.length; i=i+2) {
+        // Iterate across to the right
+        for (var j = 0; j < arr[i].length; j++) {
+            console.log(arr[i][j]);
+        }
+
+        // If iterating across to the right was the last row, end, otherwise
+        // iterate back across to the right
+        if (i+1 < arr.length) {
+            for (var j = arr[i+1].length-1; j >= 0; j--) {
+                console.log(arr[i+1][j]);
+            }
+        }
+    }
+}
+
+/**
+ * Exercise 1.5: Given a 2D matrix, write a function to print the values in the
  * matrix in a clockwise spiral from outside to inside
  *
  * Time Complexity: O(arr.length * arr[0].length)
@@ -75,7 +169,7 @@ var printSpiral = function(arr) {
 }
 
 /**
- * Exercise 1.3: Given a 2D matrix, write a function to print the values in the
+ * Exercise 1.6: Given a 2D matrix, write a function to print the values in the
  * matrix in a zig-zag order
  *
  * Time Complexity: O(arr.length * arr[0].length)
@@ -126,73 +220,6 @@ var printDiagonals = function(arr) {
         else if (row+1 < arr.length) row++;
         else col++;
     }
-}
-
-/**
- * Exercise 1.4: Write a function that takes in a string and removes every
- * even-indexed character
- *
- * Time Complexity: O(s.length())
- * Space Complexity: O(s.length())
- *
- * @param{string} s
- * @return{string}
- */
-var removeEven = function(s) {
-    // It is more complexity-efficient for us to add all the characters to an
-    // array and join them at the end
-    var charArray = []
-
-    // Increment by 2 each time to only visit odd indices
-    for (var i = 1; i < s.length; i=i+2) {
-        charArray.push(s[i]);
-    }
-
-    return charArray.join("");
-}
-
-/**
- * Exercises 1.5: Zig Zag Conversion
- * Full Problem Definition: https://leetcode.com/problems/zigzag-conversion/
- *
- * Time Complexity: O(s.length())
- * Space Complexity: O(s.length())
- *
- * @param{string} s
- * @param{number} numRows
- * @return{string}
- */
-var zigZag = function(s, numRows) {
-    // We'll compute each row and then merge them all together at the end
-    var rows = []
-    for (var i = 0; i < numRows; i++) rows.push([]);
-
-    // We have 2 actions. First we iterate down over each row, then we
-    // iterate back up. Do one then the other.
-    var idx = 0;
-    while (idx < s.length) {
-        // Iterate from row 0 to numRows-1
-        for (var i = 0; i < rows.length && idx < s.length; i++) {
-            rows[i].push(s[idx++]);
-        }
-
-        // Iterate back up from numRows-2 to 1. Make sure we go from
-        // numRows-2 to 1 and not numRows-1 to 0 because otherwise we'll
-        // add 2 characters to row 0 and 2 characters to row numRows-1
-        for (var i = rows.length-2; i >= 1 && idx < s.length; i--) {
-            rows[i].push(s[idx++]);
-        }
-    }
-
-    // Combine all the rows together
-    var result = [];
-    rows.forEach(function(r) {
-        r.forEach(function(c) {
-            result.push(c);
-        });
-    });
-
-    return result.join("");
 }
 
 /**
@@ -546,13 +573,14 @@ var tester = function() {
     reverseArray(toReverse);
     console.log(toReverse);
 
-    var matrix = [[1,2,3,4,5],[6,7,8,9,10],[11,12,13,14,15],[16, 17,18,19,20]];
-    printSpiral(matrix);
-    printDiagonals(matrix);
-
     console.log(removeEven("abcdefg"));
 
     console.log(zigZag("PAYPALISHIRING", 3));
+
+    var matrix = [[1,2,3,4,5],[6,7,8,9,10],[11,12,13,14,15],[16, 17,18,19,20]];
+    printBackAndForth(matrix);
+    printSpiral(matrix);
+    printDiagonals(matrix);
 
     printSubstrings("abcd");
 

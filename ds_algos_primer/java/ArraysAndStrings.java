@@ -24,29 +24,7 @@ public class ArraysAndStrings {
     }
 
     /*
-     * Exercise 1.2: Given a 2D matrix, write a function to print the values in
-     * the matrix in a clockwise spiral from outside to inside
-     *
-     * Time Complexity:
-     * Space Complexity:
-     */
-    public static void printSpiral(int[][] arr) {
-        // INSERT YOUR SOLUTION HERE
-    }
-
-    /*
-     * Exercise 1.3: Given a 2D matrix, write a function to print the values in
-     * the matrix in a zig-zag order
-     *
-     * Time Complexity:
-     * Space Complexity:
-     */
-    public static void printDiagonals(int[][] arr) {
-        // INSERT YOUR SOLUTION HERE
-    }
-
-    /*
-     * Exercise 1.4: Write a function that takes in a string and removes every
+     * Exercise 1.2: Write a function that takes in a string and removes every
      * even-indexed character
      *
      * Time Complexity:
@@ -57,13 +35,46 @@ public class ArraysAndStrings {
     }
 
     /*
-     * Exercises 1.5: Zig Zag Conversion
+     * Exercises 1.3: Zig Zag Conversion
      * Full Problem Definition: https://leetcode.com/problems/zigzag-conversion/
      *
      * Time Complexity:
      * Space Complexity:
      */
     public static String zigZag(String s, int numRows) {
+        // INSERT YOUR SOLUTION HERE
+    }
+
+    /*
+     * Exercise 1.4: Given a 2D matrix, write a function to print the values
+     * going back and forth across each row
+     *
+     * Time Complexity:
+     * Space Complexity:
+     */
+    public static void printBackAndForth(int[][] arr) {
+        // INSERT YOUR SOLUTION HERE
+    }
+
+    /*
+     * Exercise 1.5: Given a 2D matrix, write a function to print the values in
+     * the matrix in a clockwise spiral from outside to inside
+     *
+     * Time Complexity:
+     * Space Complexity:
+     */
+    public static void printSpiral(int[][] arr) {
+        // INSERT YOUR SOLUTION HERE
+    }
+
+    /*
+     * Exercise 1.6: Given a 2D matrix, write a function to print the values in
+     * the matrix in a zig-zag order
+     *
+     * Time Complexity:
+     * Space Complexity:
+     */
+    public static void printDiagonals(int[][] arr) {
         // INSERT YOUR SOLUTION HERE
     }
 
