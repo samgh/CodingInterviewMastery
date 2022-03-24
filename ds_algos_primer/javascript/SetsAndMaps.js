@@ -169,6 +169,19 @@ function MyHashMap(capacity) {
     }
 }
 
+/**
+ * Exercise 1.3: Flatten a dictionary
+ *
+ * Time Complexity:
+ * Space Complexity:
+ *
+ * @param{Object} dict
+ * @return{Object}
+ */
+var flattenDictionary = function(dict) {
+    // INSERT YOUR CODE HERE
+}
+
 
 var tester = function() {
     // INSERT YOUR TEST CASES HERE

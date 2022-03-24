@@ -207,6 +207,39 @@ class MyHashMap:
 
         self._data = new_data
 
+"""
+Exercise 1.3: Flatten a dictionary
+
+Time Complexity: O(items in dict)
+Space Complexity: O(depth of nested items)
+"""
+def flatten_dictionary(my_dict: dict) -> dict:
+    result = {}
+
+    # Walk through dict recursively. For any inner maps, we track the
+    # key-path to that level so that we can prepend it
+    flatten_dictionary_inner(my_dict, result, "")
+    return result
+
+def flatten_dictionary_inner(my_dict: dict, result: dict, path: str):
+    # Add the . here so we don't have to worry about cases where path is
+    # empty later on
+    if len(path) > 0:
+        path = path + "."
+
+    # Iterate over each key in the dictionary and either add it to the
+    # result if the value is a string or recursively iterate through the
+    # dict
+    for k in my_dict:
+        value = my_dict[k]
+
+        # If it's a string, add it to the result with the correct path
+        if type(value) is str:
+            result[path + k] = value
+        else:
+            # If it's a dict, recurse
+            flatten_dictionary_inner(value, result, path + k)
+
 # Test Cases
 if __name__ == '__main__':
     s = MyHashSet(10)
@@ -233,3 +266,15 @@ if __name__ == '__main__':
     m.resize(100)
     print(m.contains_key("xyz"))
     print(m.get("xyz"))
+
+    print(flatten_dictionary({
+        "Key1" : "1",
+        "Key2" : {
+            "a" : "2",
+            "b" : "3",
+            "c" : {
+                "d" : {"x":{"y": "10"}},
+                "e" : "1"
+            }
+        }
+    }))

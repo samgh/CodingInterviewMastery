@@ -258,6 +258,52 @@ function MyHashMap(capacity) {
     }
 }
 
+/**
+ * Exercise 1.3: Flatten a dictionary
+ *
+ * Time Complexity: O(items in dict)
+ * Space Complexity: O(depth of nested items)
+ *
+ * @param{Object} dict
+ * @return{Object}
+ */
+var flattenDictionary = function(dict) {
+    var result = {};
+
+    // Walk through dict recursively. For any inner maps, we track the
+    // key-path to that level so that we can prepend it
+    flattenDictionaryInner(dict, result, "");
+    return result;
+}
+
+/**
+ * Inner recursive function
+ *
+ * @param{Object} dict
+ * @param{Object} result
+ * @param{string} path
+ */
+var flattenDictionaryInner = function(dict, result, path) {
+    // Add the . here so we don't have to worry about cases where path is
+    // empty later on
+    if (path.length != 0) path += ".";
+
+    // Iterate over each key in the dictionary and either add it to the
+    // result if the value is a string or recursively iterate through the
+    // dict
+    Object.keys(dict).forEach(function(k) {
+        var value = dict[k];
+
+        // If it's a string, add it to the result with the correct path
+        if (typeof value === 'string' || value instanceof String) {
+            result[path + k] = value;
+        } else {
+            // If it's a dict, recurse
+            flattenDictionaryInner(value, result, path + k);
+        }
+    });
+}
+
 var tester = function() {
     var s = new MyHashSet(10);
     s.add("abc");
@@ -283,6 +329,18 @@ var tester = function() {
     m.resize(100);
     console.log(m.containsKey("xyz"));
     console.log(m.get("xyz"));
+
+    console.log(flattenDictionary({
+        "Key1" : "1",
+        "Key2" : {
+            "a" : "2",
+            "b" : "3",
+            "c" : {
+                "d" : {"x":{"y": "10"}},
+                "e" : "1"
+            }
+        }
+    }));
 }
 
 tester();

@@ -126,6 +126,16 @@ class MyHashMap:
     def resize(self, new_capacity: int):
         # INSERT YOUR SOLUTION HERE
 
+"""
+Exercise 1.3: Flatten a dictionary
+
+Time Complexity:
+Space Complexity:
+"""
+def flatten_dictionary(my_dict: dict) -> dict:
+    # INSERT YOUR SOLUTION HERE
+
+
 # Test Cases
 if __name__ == '__main__':
     # INSERT YOUR TEST CASES HERE

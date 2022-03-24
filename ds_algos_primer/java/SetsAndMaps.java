@@ -159,6 +159,16 @@ public class SetAndMapSolutions {
         }
     }
 
+    /*
+     * Exercise 1.3: Flatten a dictionary
+     *
+     * Time Complexity:
+     * Space Complexity:
+     */
+    public static Map<String, Object> flattenDictionary(Map<String, Object> dict) {
+        // INSERT YOUR TESTS HERE
+    }
+
     // Sample test cases
     public static void main(String[] args) {
         // INSERT YOUR TESTS HERE

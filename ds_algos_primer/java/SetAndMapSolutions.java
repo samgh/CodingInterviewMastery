@@ -270,6 +270,46 @@ public class SetAndMapSolutions {
         }
     }
 
+    /*
+     * Exercise 1.3: Flatten a dictionary
+     *
+     * Time Complexity: O(items in dict)
+     * Space Complexity: O(depth of nested items)
+     */
+    public static Map<String, Object> flattenDictionary(Map<String, Object> dict) {
+        Map<String, Object> result = new HashMap<>();
+
+        // Walk through dict recursively. For any inner maps, we track the
+        // key-path to that level so that we can prepend it
+        flattenDictionary(dict, result, "");
+        return result;
+    }
+
+    // Inner recursive function
+    private static void flattenDictionary(Map<String, Object> dict, Map<String, Object> result, String path) {
+        // Add the . here so we don't have to worry about cases where path is
+        // empty later on
+        if (path.length() != 0) path += ".";
+
+        // Iterate over each key in the dictionary and either add it to the
+        // result if the value is a string or recursively iterate through the
+        // dict
+        for (String k : dict.keySet()) {
+            Object value = dict.get(k);
+
+            // If it's a string, add it to the result with the correct path
+            if (value instanceof String) {
+                result.put(path + k, (String) value);
+            } else if (value instanceof Map) {
+                // If it's a dict, recurse
+                // Note: Jave doesn't like us casting here and will give us a
+                // warning
+                Map<String, Object> valDict = (Map<String, Object>) value;
+                flattenDictionary((Map<String, Object>) valDict, result, path + k);
+            }
+        }
+    }
+
     // Sample test cases
     public static void main(String[] args) {
         MyHashSet s = new MyHashSet(10);
@@ -297,5 +337,19 @@ public class SetAndMapSolutions {
         m.resize(100);
         System.out.println(m.containsKey("xyz"));
         System.out.println(m.get("xyz"));
+
+        HashMap<String, Object> dict = new HashMap<>();
+		dict.put("key1", "1");
+		HashMap<String, Object> c = new HashMap<String, Object>();
+		c.put("d", "3");
+        c.put("e", "1");
+		HashMap<String, Object> key2 = new HashMap<String, Object>();
+		key2.put("a", "2");
+        key2.put("b", "3");
+        key2.put("c", c);
+		dict.put("key2", key2);
+
+        System.out.println(dict);
+        System.out.println(flattenDictionary(dict));
     }
 }
