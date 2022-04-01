@@ -50,7 +50,7 @@ def remove_even(s: str) -> str:
     result = []
 
     # Increment by 2 each time to only visit odd indices
-    for i in range(1, len(s), 2):
+    for i in range(0, len(s), 2):
         result.append(s[i])
 
     return ''.join(result)

@@ -264,6 +264,217 @@ public class SortingAndSearchingSolutions {
         arr[j] = temp;
     }
 
+    /*
+     * Simple list node class copied from Leetcode: https://leetcode.com/problems/sort-list/
+     */
+    public static class ListNode {
+        int val;
+        ListNode next;
+        ListNode() {}
+        ListNode(int val) { this.val = val; }
+        ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+    }
+
+    /*
+     * Exercise 3.1: Sort a Linked List
+     *
+     * Time Complexity: O(n log n)
+     * Space Complexity: O(log n)
+     */
+    public static ListNode sortList(ListNode head) {
+        // If the list contains 0 or 1 nodes, it is already sorted
+        if (head == null || head.next == null) return head;
+
+        // Use a fast and slow pointer to split the lists down the middle into
+        // two roughly even halves
+        ListNode slow = head;
+        ListNode fast = head.next;
+
+        // Find the midpoint
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        // Split the lists
+        ListNode firstHalf = head;
+        ListNode secondHalf = slow.next;
+        slow.next = null;
+
+        // Sort each half
+        firstHalf = sortList(firstHalf);
+        secondHalf = sortList(secondHalf);
+
+        // Merge the sorted halves
+        return mergeLists(firstHalf, secondHalf);
+    }
+
+    /*
+     * Merge two sorted lists
+     */
+    private static ListNode mergeLists(ListNode l1, ListNode l2) {
+        ListNode dummyHead = new ListNode(0);
+        ListNode curr = dummyHead;
+
+        // The concept is basically the same as merging arrays
+        while (l1 != null || l2 != null) {
+            // If we've already added all of l1, then just add the remainder of
+            // l2 and return
+            if (l1 == null) {
+                curr.next = l2;
+                return dummyHead.next;
+            }
+
+            // If we've already added all of l2, then just add the remainder of
+            // l1 and return
+            if (l2 == null) {
+                curr.next = l1;
+                return dummyHead.next;
+            }
+
+            // If there are remaining elements in both lists, add the smaller
+            // to our result list
+            if (l1.val < l2.val) {
+                curr.next = l1;
+                l1 = l1.next;
+            } else {
+                curr.next = l2;
+                l2 = l2.next;
+            }
+            curr = curr.next;
+        }
+
+        return dummyHead.next;
+    }
+
+    /*
+     * Exercise 3.2: Find the largest number
+     *
+     * Time Complexity: O(n log n)
+     * Space Complexity: O(n)
+     */
+    public static String largestNumber(int[] nums) {
+        // We ultimately need to treat this as a string, so let's go ahead and
+        // convert everything
+        String[] numStrings = new String[nums.length];
+        for (int i = 0; i < nums.length; i++) {
+            numStrings[i] = String.valueOf(nums[i]);
+        }
+
+        // Sort our array of strings
+        Arrays.sort(numStrings, (String s1, String s2) -> {
+            // To determine which string comes first, see what happens when we
+            // concatenate them each way. We want the largest resulting string
+            String s1First = s1 + s2;
+            String s2First = s2 + s1;
+
+            // Since we want the largest strings first, reverse the order
+            return -s1First.compareTo(s2First);
+        });
+
+        // If our string is all 0s, then just return "0"
+        if (numStrings[0].equals("0")) return "0";
+
+        // Otherwise join our array
+        return String.join("", numStrings);
+    }
+
+    /*
+     * Exercise 3.3: Find the square root
+     *
+     * Time Complexity: O(log x)
+     * Space Complexity: O(1)
+     */
+    public static int squareRoot(int x) {
+        // If x == the square root is 0
+        if (x == 0) return 0;
+
+        // We'll do binary search, so establish starting bounds. Square root
+        // cannot be more than half of the value
+        int lo = 1;
+        int hi = x/2;
+
+        // Perform search
+        while (lo < hi) {
+            int mid = (lo + hi) / 2;
+
+            // We cannot do mid*mid > x because of overflow error, so this is
+            // the same expression rearranged to use division and avoid overflow
+            if (mid > x / mid) {
+                hi = mid-1;
+            } else if (mid+1 > x/(mid+1)) {
+                // If mid is too low but mid+1 is too high, then return mid
+                return mid;
+            } else {
+                lo = mid+1;
+            }
+        }
+
+        return lo;
+    }
+
+    /*
+     * Exercise 3.4: Split Array Largest Sum
+     *
+     * Time Complexity: O(log(sum(arr)) * arr.length)
+     * Space Complexity: O(1)
+     */
+    public static int splitLargest(int[] arr, int m) {
+        // We know that our value must be between the max individual value in
+        // the array and the sum of the total array. So we'll just do binary
+        // search to find the minimum value where we can validly divide the array
+        int max = 0;
+        int sum = 0;
+        for (int i : arr) {
+            max = Math.max(max, i);
+            sum += i;
+        }
+
+        if (m == 0) return (int) sum;
+
+        // Do binary search
+        int lo = max;
+        int hi = sum;
+        while (lo <= hi) {
+            int mid = (lo + hi)/2;
+
+            // If the array can be validly divided with the current max sum, try
+            // a smaller max sum
+            if (valid(arr, m, mid)) {
+                hi = mid-1;
+            } else {
+                lo = mid+1;
+            }
+        }
+
+        return (int)lo;
+    }
+
+    /*
+     * Determine whether an array can be divided into <= m subarrays all with
+     * sum of <= maxSum.
+     */
+    private static boolean valid(int[] arr, int m, int maxSum) {
+        int subarrayCount = 1;
+        int subarraySum = 0;
+
+        // Greedily divide into the minimum possible subarrays. For each
+        // subarray just add as many values as you can without exceeding the
+        // maxSum. Any time you exceed it, then that is the start of a new subarray
+        for (int a : arr) {
+            subarraySum += a;
+            if (subarraySum > maxSum) {
+                subarrayCount++;
+                subarraySum = a;
+
+                if (subarrayCount > m) return false;
+            }
+        }
+
+        return true;
+    }
+
+
     public static void main(String[] args) {
         System.out.println(binarySearch(new int[]{1,2,3,4,5,6}, 5));
 
@@ -281,5 +492,22 @@ public class SortingAndSearchingSolutions {
         int[] arr2 = new int[]{1,5,3,3,7,6,9,1};
         quickSort(arr2);
         System.out.println(Arrays.toString(arr));
+
+        ListNode l = new ListNode(5);
+        l.next = new ListNode(2);
+        l.next.next = new ListNode(3);
+        l.next.next.next = new ListNode(7);
+        l = sortList(l);
+        while (l != null) {
+            System.out.println(l.val);
+            l = l.next;
+        }
+
+        System.out.println(largestNumber(new int[]{3,30,34,5,9}));
+
+        System.out.println(squareRoot(4));
+        System.out.println(squareRoot(8));
+
+        System.out.println(splitLargest(new int[]{7,2,5,10,8}, 2));
     }
 }

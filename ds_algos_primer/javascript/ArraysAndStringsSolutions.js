@@ -42,7 +42,7 @@ var removeEven = function(s) {
     var charArray = []
 
     // Increment by 2 each time to only visit odd indices
-    for (var i = 1; i < s.length; i=i+2) {
+    for (var i = 0; i < s.length; i=i+2) {
         charArray.push(s[i]);
     }
 

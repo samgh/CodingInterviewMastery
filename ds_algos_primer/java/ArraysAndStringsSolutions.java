@@ -42,7 +42,7 @@ public class ArraysAndStringsSolutions {
         StringBuilder sb = new StringBuilder();
 
         // Increment by 2 each time to only visit odd indices
-        for (int i = 1; i < s.length(); i=i+2) {
+        for (int i = 0; i < s.length(); i=i+2) {
             sb.append(s.charAt(i));
         }
 
