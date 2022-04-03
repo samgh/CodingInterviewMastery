@@ -229,17 +229,17 @@ public class SortingAndSearchingSolutions {
     private static int partition(int[] arr, int lo, int hi) {
         // Arbitrarily pick partition. We could randomize this to improve
         // worst-case performance
-        int partition = arr[lo];
+        int partitionVal = arr[lo];
 
         // We will start with a pointer at arr[1] and arr[arr.length-1]
         int i = lo+1;
         int j = hi;
 
-        while (i < j) {
-            // If arr[i] < partition, it's arleady in the right spot in our
+        while (i <= j) {
+            // If arr[i] <= partition, it's arleady in the right spot in our
             // array so we don't want to move it. Just increment i to leave it
             // in place
-            if (partition < arr[i]) i++;
+            if (arr[i] <= partitionVal) i++;
 
             // Otherwise, we swap arr[i] and arr[j] to move arr[i] to the other
             // side of our partition. We can now decrement j because we know
@@ -253,8 +253,9 @@ public class SortingAndSearchingSolutions {
         // Currently our partition is at the beginning of our array and
         // most likely out of order. Move it to the middle so that it properly
         // sits between the two partitions
-        swap(arr, 0, i);
-        return i;
+        swap(arr, lo, i-1);
+
+        return i-1;
     }
 
     // Simple function to swap two indices of an array
@@ -491,7 +492,7 @@ public class SortingAndSearchingSolutions {
 
         int[] arr2 = new int[]{1,5,3,3,7,6,9,1};
         quickSort(arr2);
-        System.out.println(Arrays.toString(arr));
+        System.out.println(Arrays.toString(arr2));
 
         ListNode l = new ListNode(5);
         l.next = new ListNode(2);
