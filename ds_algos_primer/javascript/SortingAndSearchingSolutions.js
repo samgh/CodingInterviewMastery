@@ -304,7 +304,234 @@ var swap = function(arr, i, j) {
     arr[j] = temp;
 }
 
+/**
+ * Simple list node class copied from Leetcode: https://leetcode.com/problems/sort-list/
+ */
+function ListNode(val, next) {
+    this.val = (val===undefined ? 0 : val)
+    this.next = (next===undefined ? null : next)
+}
 
+/**
+ * Exercise 3.1: Sort a Linked List
+ *
+ * Time Complexity: O(n log n)
+ * Space Complexity: O(log n)
+ *
+ * @param{ListNode} head
+ * @return{ListNode}
+ */
+var sortList = function(head) {
+    // If the list contains 0 or 1 nodes, it is already sorted
+    if (head == null || head.next == null) return head;
+
+    // Use a fast and slow pointer to split the lists down the middle into
+    // two roughly even halves
+    var slow = head;
+    var fast = head.next;
+
+    // Find the midpoint
+    while (fast != null && fast.next != null) {
+        slow = slow.next;
+        fast = fast.next.next;
+    }
+
+    // Split the lists
+    var firstHalf = head;
+    var secondHalf = slow.next;
+    slow.next = null;
+
+    // Sort each half
+    firstHalf = sortList(firstHalf);
+    secondHalf = sortList(secondHalf);
+
+    // Merge the sorted halves
+    return mergeLists(firstHalf, secondHalf);
+}
+
+/**
+ * Merge two sorted lists
+ *
+ * @param{ListNode} l1
+ * @param{ListNode} l2
+ * @return{ListNode}
+ */
+var mergeLists = function(l1, l2) {
+    var dummyHead = new ListNode(0);
+    var curr = dummyHead;
+
+    // The concept is basically the same as merging arrays
+    while (l1 != null || l2 != null) {
+        // If we've already added all of l1, then just add the remainder of
+        // l2 and return
+        if (l1 == null) {
+            curr.next = l2;
+            return dummyHead.next;
+        }
+
+        // If we've already added all of l2, then just add the remainder of
+        // l1 and return
+        if (l2 == null) {
+            curr.next = l1;
+            return dummyHead.next;
+        }
+
+        // If there are remaining elements in both lists, add the smaller
+        // to our result list
+        if (l1.val < l2.val) {
+            curr.next = l1;
+            l1 = l1.next;
+        } else {
+            curr.next = l2;
+            l2 = l2.next;
+        }
+        curr = curr.next;
+    }
+
+    return dummyHead.next;
+}
+
+/**
+ * Exercise 3.2: Find the largest number
+ *
+ * Time Complexity: O(n log n)
+ * Space Complexity: O(n)
+ *
+ * @param{number[]} nums
+ * @return{string}
+ */
+var largestNumber = function(nums) {
+    // We ultimately need to treat this as a string, so let's go ahead and
+    // convert everything
+    var numStrings = [];
+    nums.forEach(num => numStrings.push(num.toString()));
+
+    // Sort our array of strings
+    numStrings.sort((s1, s2) => {
+        // To determine which string comes first, see what happens when we
+        // concatenate them each way. We want the largest resulting string
+        var s1First = s1 + s2;
+        var s2First = s2 + s1;
+
+        // Since we want the largest strings first, reverse the order
+        return s1First > s2First ? -1 : 1;
+    });
+
+    // If our string is all 0s, then just return "0"
+    if (numStrings[0] == "0") return "0";
+
+    // Otherwise join our array
+    return numStrings.join("");
+}
+
+/**
+ * Exercise 3.3: Find the square root
+ *
+ * Time Complexity: O(log x)
+ * Space Complexity: O(1)
+ *
+ * @param{number} x
+ * @return{number}
+ */
+var squareRoot = function(x) {
+    // If x == the square root is 0
+    if (x == 0) return 0;
+
+    // We'll do binary search, so establish starting bounds. Square root
+    // cannot be more than half of the value
+    var lo = 1;
+    var hi = Math.floor(x/2);
+
+    // Perform search
+    while (lo < hi) {
+        var mid = Math.floor((lo + hi) / 2);
+
+        // If mid is too high, then search in the lower half
+        if (mid*mid > x) {
+            hi = mid-1;
+        } else if ((mid+1)*(mid+1) > x) {
+            // If mid is too low but mid+1 is too high, then return mid
+            return mid;
+        } else {
+            lo = mid+1;
+        }
+    }
+
+    return lo;
+}
+
+/**
+ * Exercise 3.4: Split Array Largest Sum
+ *
+ * Time Complexity: O(log(sum(arr)) * arr.length)
+ * Space Complexity: O(1)
+ *
+ * @param{number[]} arr
+ * @param{number} m
+ * @return{number}
+ */
+var splitLargest = function(arr, m) {
+    // We know that our value must be between the max individual value in
+    // the array and the sum of the total array. So we'll just do binary
+    // search to find the minimum value where we can validly divide the array
+    var max = 0;
+    var sum = 0;
+    arr.forEach(i => {
+        max = Math.max(max, i);
+        sum += i;
+    });
+
+    if (m == 0) return sum;
+
+    // Do binary search
+    var lo = max;
+    var hi = sum;
+    while (lo <= hi) {
+        var mid = Math.floor((lo + hi)/2);
+
+        // If the array can be validly divided with the current max sum, try
+        // a smaller max sum
+        if (valid(arr, m, mid)) {
+            hi = mid-1;
+        } else {
+            lo = mid+1;
+        }
+    }
+
+    return lo;
+}
+
+/**
+ * Determine whether an array can be divided into <= m subarrays all with
+ * sum of <= maxSum.
+ *
+ * @param{number[]} arr
+ * @param{number} m
+ * @param{number} maxSum
+ */
+var valid = function(arr, m, maxSum) {
+    var subarrayCount = 1;
+    var subarraySum = 0;
+
+    // Greedily divide into the minimum possible subarrays. For each
+    // subarray just add as many values as you can without exceeding the
+    // maxSum. Any time you exceed it, then that is the start of a new subarray
+    for (var i = 0; i < arr.length; i++) {
+        subarraySum += arr[i];
+        if (subarraySum > maxSum) {
+            subarrayCount++;
+            subarraySum = arr[i];
+
+            if (subarrayCount > m) return false;
+        }
+    }
+
+    return true;
+}
+
+/**
+ * Sample test cases
+ */
 var tester = function() {
     console.log(binarySearch([1,2,3,4,5,6], 5));
 
@@ -322,29 +549,22 @@ var tester = function() {
     var arr2 = [1,5,3,3,7,6,9,1];
     quickSort(arr2);
     console.log(arr2);
-        /*
 
-        int[] arr2 = new int[]{1,5,3,3,7,6,9,1};
-        quickSort(arr2);
-        System.out.println(Arrays.toString(arr));
+    var l = new ListNode(5);
+    l.next = new ListNode(2);
+    l.next.next = new ListNode(3);
+    l.next.next.next = new ListNode(7);
+    l = sortList(l);
+    while (l != null) {
+        console.log(l.val);
+        l = l.next;
+    }
 
-        ListNode l = new ListNode(5);
-        l.next = new ListNode(2);
-        l.next.next = new ListNode(3);
-        l.next.next.next = new ListNode(7);
-        l = sortList(l);
-        while (l != null) {
-            System.out.println(l.val);
-            l = l.next;
-        }
+    console.log(largestNumber([3,30,34,5,9]));
+    console.log(squareRoot(4));
+    console.log(squareRoot(8));
 
-        System.out.println(largestNumber(new int[]{3,30,34,5,9}));
-
-        System.out.println(squareRoot(4));
-        System.out.println(squareRoot(8));
-
-        System.out.println(splitLargest(new int[]{7,2,5,10,8}, 2));*/
-
+    console.log(splitLargest([7,2,5,10,8], 2));
 }
 
 tester();

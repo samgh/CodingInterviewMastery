@@ -431,7 +431,7 @@ public class SortingAndSearchingSolutions {
             sum += i;
         }
 
-        if (m == 0) return (int) sum;
+        if (m == 0) return sum;
 
         // Do binary search
         int lo = max;
@@ -448,7 +448,7 @@ public class SortingAndSearchingSolutions {
             }
         }
 
-        return (int)lo;
+        return lo;
     }
 
     /*
