@@ -347,6 +347,90 @@ def largest_number(nums: List[int]) -> str:
     # Otherwise join our array
     return "".join(num_strings)
 
+"""
+Exercise 3.3: Find the square root
+
+Time Complexity: O(log x)
+Space Complexity: O(1)
+"""
+def square_root(x: int) -> int:
+    # If x == the square root is 0
+    if x == 0:
+        return 0
+
+    # We'll do binary search, so establish starting bounds. Square root
+    # cannot be more than half of the value
+    lo = 1
+    hi = x//2
+
+    # Perform search
+    while lo < hi:
+        mid = (lo + hi) // 2
+
+        # We cannot do mid*mid > x because of overflow error, so this is
+        # the same expression rearranged to use division and avoid overflow
+        if mid * mid > x:
+            hi = mid-1
+        elif (mid+1)*(mid+1) > x:
+            # If mid is too low but mid+1 is too high, then return mid
+            return mid
+        else:
+            lo = mid+1
+
+    return lo
+
+"""
+Exercise 3.4: Split Array Largest Sum
+
+Time Complexity: O(log(sum(arr)) * arr.length)
+Space Complexity: O(1)
+"""
+def split_largest(arr: List[int], m: int) -> int:
+    # We know that our value must be between the max individual value in
+    # the array and the sum of the total array. So we'll just do binary
+    # search to find the minimum value where we can validly divide the array
+    max_val = max(arr)
+    arr_sum = sum(arr)
+
+    if m == 0:
+        return sum
+
+    # Do binary search
+    lo = max_val
+    hi = arr_sum
+    while lo <= hi:
+        mid = (lo + hi)//2
+
+        # If the array can be validly divided with the current max sum, try
+        # a smaller max sum
+        if valid(arr, m, mid):
+            hi = mid-1
+        else:
+            lo =  mid+1
+
+    return lo
+
+"""
+Determine whether an array can be divided into <= m subarrays all with
+sum of <= maxSum.
+"""
+def valid(arr: List[int], m: int, max_sum: int) -> bool:
+    subarray_count = 1
+    subarray_sum = 0
+
+    # Greedily divide into the minimum possible subarrays. For each
+    # subarray just add as many values as you can without exceeding the
+    # maxSum. Any time you exceed it, then that is the start of a new subarray
+    for a in arr:
+        subarray_sum = subarray_sum + a
+        if subarray_sum > max_sum:
+            subarray_count = subarray_count+1
+            subarray_sum = a
+
+            if subarray_count > m:
+                return False
+
+    return True
 
 # Sample test cases
 if __name__ == '__main__':
@@ -378,22 +462,7 @@ if __name__ == '__main__':
 
     print(largest_number([3,30,34,5,9]))
 
-    """
+    print(square_root(4))
+    print(square_root(8))
 
-    ListNode l = new ListNode(5);
-    l.next = new ListNode(2);
-    l.next.next = new ListNode(3);
-    l.next.next.next = new ListNode(7);
-    l = sortList(l);
-    while (l != null) {
-        System.out.println(l.val);
-        l = l.next;
-    }
-
-    System.out.println(largestNumber(new int[]{3,30,34,5,9}));
-
-    System.out.println(squareRoot(4));
-    System.out.println(squareRoot(8));
-
-    System.out.println(splitLargest(new int[]{7,2,5,10,8}, 2));
-    """
+    print(split_largest([7,2,5,10,8], 2))
