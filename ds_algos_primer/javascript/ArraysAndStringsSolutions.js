@@ -232,7 +232,7 @@ var printDiagonals = function(arr) {
  */
 var printSubstrings = function(s) {
     for (var i = 0; i < s.length; i++) {
-        for (var j = i+1; j < s.length; j++) {
+        for (var j = i+1; j <= s.length; j++) {
             console.log(s.substring(i,j));
         }
     }
