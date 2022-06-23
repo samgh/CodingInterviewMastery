@@ -29,6 +29,8 @@ class DoublyLinkedListNode:
 """
 Exercise 2.1: Write a function that swaps two nodes in a doubly-linked list
 
+Note: We do not have a dummy head, so it is not possible to swap the first node
+
 Time Complexity: O(max(n, m))
 Space Complexity: O(1)
 """
@@ -53,28 +55,51 @@ def swap_nodes(l: DoublyLinkedListNode, n: int, m: int):
             mNode = curr
         curr = curr.next
 
-    # We're going to swap these pointers in mNode, so we need to save them for
-    # later
-    mNodePrev = mNode.prev
-    mNodeNext = mNode.next
+    # Logic is different depending on whether nodes are adjacent. Handle
+    # non-adjacent case first
+    if nNode.next != mNode and mNode.next != nNode:
+        # We're going to swap these pointers in mNode, so we need to save them for
+        # later
+        mNodePrev = mNode.prev
+        mNodeNext = mNode.next
 
-    # Insert mNode into the position where nNode was by swapping the pointers
-    # from other nodes to mNode and the pointers from mNode to point to those
-    # before and after nNode
-    mNode.prev = nNode.prev
-    mNode.next = nNode.next
-    if mNode.prev:
-        mNode.prev.next = mNode
-    if mNode.next:
-        mNode.next.prev = mNode
+        # Insert mNode into the position where nNode was by swapping the pointers
+        # from other nodes to mNode and the pointers from mNode to point to those
+        # before and after nNode
+        mNode.prev = nNode.prev
+        mNode.next = nNode.next
+        if mNode.prev:
+            mNode.prev.next = mNode
+        if mNode.next:
+            mNode.next.prev = mNode
 
-    # Do the same for nNode
-    nNode.prev = mNodePrev
-    nNode.next = mNodeNext
-    if nNode.prev:
-        nNode.prev.next = nNode
-    if nNode.next:
-        nNode.next.prev = nNode
+        # Do the same for nNode
+        nNode.prev = mNodePrev
+        nNode.next = mNodeNext
+        if nNode.prev:
+            nNode.prev.next = nNode
+        if nNode.next:
+            nNode.next.prev = nNode
+
+    else:
+        # Make sure nNode is always the first one
+        if mNode.next == nNode:
+            temp = mNode
+            mNode = nNode
+            nNode = temp
+
+        # Keep track of the nodes before and after the window of the two
+        # nodes we're swapping and then swap the two nodes
+        prev = nNode.prev
+        next = mNode.next
+
+        nNode.next = next
+        nNode.prev = mNode
+        mNode.next = nNode
+        mNode.prev = prev
+
+        prev.next = mNode
+        next.prev = nNode
 
 """
 Exercise 2.2: Write a function that removes the odd-indexed values from a
@@ -359,36 +384,42 @@ def print_double(n: DoublyLinkedListNode):
 
 
 if __name__ == '__main__':
-    d = double_generator(4)
-    swap_nodes(d, 1, 3);
-    print_double(d);
+    d = double_generator(8)
+    swap_nodes(d, 2, 6)
+    print_double(d)
 
-    l = single_generator(4);
-    remove_odd(l);
-    print_single(l);
+    swap_nodes(d, 1, 7)
+    print_double(d)
 
-    l = single_generator(9);
-    deinterleave(l);
-    print_single(l);
+    swap_nodes(d, 1, 2)
+    print_double(d)
 
-    l = single_generator(5);
-    l = reverse(l);
-    print_single(l);
+    l = single_generator(4)
+    remove_odd(l)
+    print_single(l)
 
-    print(are_equal(single_generator(5), single_generator(5)));
+    l = single_generator(9)
+    deinterleave(l)
+    print_single(l)
 
-    print(nth_to_last(single_generator(5), 2).val);
+    l = single_generator(5)
+    l = reverse(l)
+    print_single(l)
 
-    print(midpoint(single_generator(5)).val);
+    print(are_equal(single_generator(5), single_generator(5)))
 
-    l = SinglyLinkedListNode(1);
-    l.next = SinglyLinkedListNode(1);
-    l.next.next = SinglyLinkedListNode(2);
-    l.next.next.next = SinglyLinkedListNode(3);
-    l.next.next.next.next = SinglyLinkedListNode(1);
-    print_single(remove_all(l, 1));
+    print(nth_to_last(single_generator(5), 2).val)
 
-    l = single_generator(5);
-    l.next.next.next.next.next = l.next.next;
-    print(has_cycle_naive(l));
-    print(has_cycle(l));
+    print(midpoint(single_generator(5)).val)
+
+    l = SinglyLinkedListNode(1)
+    l.next = SinglyLinkedListNode(1)
+    l.next.next = SinglyLinkedListNode(2)
+    l.next.next.next = SinglyLinkedListNode(3)
+    l.next.next.next.next = SinglyLinkedListNode(1)
+    print_single(remove_all(l, 1))
+
+    l = single_generator(5)
+    l.next.next.next.next.next = l.next.next
+    print(has_cycle_naive(l))
+    print(has_cycle(l))

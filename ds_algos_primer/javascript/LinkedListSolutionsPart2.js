@@ -33,6 +33,9 @@ function DoublyLinkedListNode(n) {
 /**
  * Exercise 2.1: Write a function that swaps two nodes in a doubly-linked list
  *
+ * Note: We do not have a dummy head, so it is not possible to swap the
+ * first node
+ *
  * Time Complexity: O(max(n, m))
  * Space Complexity: O(1)
  *
@@ -57,24 +60,48 @@ var swapNodes = function(l, n, m) {
         curr = curr.next;
     }
 
-    // We're going to swap these pointers in mNode, so we need to save them
-    // for later
-    var mNodePrev = mNode.prev;
-    var mNodeNext = mNode.next;
+    // Logic is different depending on whether nodes are adjacent. Handle
+    // non-adjacent case first
+    if (nNode.next != mNode && mNode.next != nNode) {
+        // We're going to swap these pointers in mNode, so we need to save them
+        // for later
+        var mNodePrev = mNode.prev;
+        var mNodeNext = mNode.next;
 
-    // Insert mNode into the position where nNode was by swapping the
-    // pointers from other nodes to mNode and the pointers from mNode to
-    // point to those before and after nNode
-    mNode.prev = nNode.prev;
-    mNode.next = nNode.next;
-    if (mNode.prev != null) mNode.prev.next = mNode;
-    if (mNode.next != null) mNode.next.prev = mNode;
+        // Insert mNode into the position where nNode was by swapping the
+        // pointers from other nodes to mNode and the pointers from mNode to
+        // point to those before and after nNode
+        mNode.prev = nNode.prev;
+        mNode.next = nNode.next;
+        if (mNode.prev != null) mNode.prev.next = mNode;
+        if (mNode.next != null) mNode.next.prev = mNode;
 
-    // Do the same for nNode
-    nNode.prev = mNodePrev;
-    nNode.next = mNodeNext;
-    if (nNode.prev != null) nNode.prev.next = nNode;
-    if (nNode.next != null) nNode.next.prev = nNode;
+        // Do the same for nNode
+        nNode.prev = mNodePrev;
+        nNode.next = mNodeNext;
+        if (nNode.prev != null) nNode.prev.next = nNode;
+        if (nNode.next != null) nNode.next.prev = nNode;
+    } else {
+        // Make sure nNode is always the first one
+        if (mNode.next == nNode) {
+            var temp = mNode;
+            mNode = nNode;
+            nNode = temp;
+        }
+
+        // Keep track of the nodes before and after the window of the two
+        // nodes we're swapping and then swap the two nodes
+        var prev = nNode.prev;
+        var next = mNode.next;
+
+        nNode.next = next;
+        nNode.prev = mNode;
+        mNode.next = nNode;
+        mNode.prev = prev;
+
+        prev.next = mNode;
+        next.prev = nNode;
+    }
 }
 
 /**
@@ -422,8 +449,14 @@ var printDouble = function(n) {
 }
 
 var tester = function() {
-    var d = doubleGenerator(4);
-    swapNodes(d, 1, 3);
+    var d = d = doubleGenerator(8);
+    swapNodes(d, 2, 6);
+    printDouble(d);
+
+    swapNodes(d, 1, 7);
+    printDouble(d);
+
+    swapNodes(d, 1, 2);
     printDouble(d);
 
     var l = singleGenerator(4);
