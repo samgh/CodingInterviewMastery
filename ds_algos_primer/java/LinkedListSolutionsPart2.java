@@ -90,6 +90,8 @@ public class LinkedListSolutionsPart2 {
                 nNode = temp;
             }
 
+            // Keep track of the nodes before and after the window of the two
+            // nodes we're swapping and then swap the two nodes
             DoublyLinkedListNode prev = nNode.prev;
             DoublyLinkedListNode next = mNode.next;
 
@@ -399,7 +401,6 @@ public class LinkedListSolutionsPart2 {
     // Test cases
     public static void main(String[] args) {
         DoublyLinkedListNode d = doubleGenerator(8);
-        printDouble(d);
         swapNodes(d, 2, 6);
         printDouble(d);
 

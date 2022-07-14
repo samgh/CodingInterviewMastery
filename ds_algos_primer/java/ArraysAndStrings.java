@@ -106,7 +106,7 @@ public class ArraysAndStrings {
      * Time Complexity:
      * Space Complexity:
      */
-    public static int[][] twoSum(int[] arr, int target) {
+    public static List<int[]> twoSum(int[] arr, int target) {
         // INSERT YOUR SOLUTION HERE
     }
 
