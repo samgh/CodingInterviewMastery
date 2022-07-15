@@ -613,8 +613,8 @@ public class TreeSolutions {
             TreeNode curr = stack.pop();
             result.add(curr.val);
 
-            if (curr.right != null) stack.push(curr.left);
-            if (curr.left != null) stack.push(curr.right);
+            if (curr.left != null) stack.push(curr.left);
+            if (curr.right != null) stack.push(curr.right);
         }
 
         Collections.reverse(result);
