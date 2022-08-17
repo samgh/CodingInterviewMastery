@@ -133,25 +133,33 @@ def print_spiral(arr: List[List[int]]):
     # The spiral follows a fixed set of steps. We go left, down, right, up.
     # For each of these, we just interate to the bounds, so we express each
     # one explicitly.
-    while min_row < max_row and min_col < max_col:
+    while True:
         # Go across the top
         for col in range(min_col, max_col+1):
             print(arr[min_row][col])
+        if min_row >= max_row:
+            break
         min_row = min_row+1
 
         # Go down the right side
         for row in range(min_row, max_row+1):
             print(arr[row][max_col])
+        if min_col >= max_col:
+            break
         max_col = max_col-1
 
         # Go across the bottom
         for col in range(max_col, min_col-1, -1):
             print(arr[max_row][col])
+        if min_row >= max_row:
+            break
         max_row = max_row-1
 
         # Go up the left side
         for row in range(max_row, min_row-1, -1):
             print(arr[row][min_col])
+        if min_col >= max_col:
+            break
         min_col = min_col+1
 
 """

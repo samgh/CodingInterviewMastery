@@ -129,29 +129,33 @@ public class ArraysAndStringsSolutions {
         // The spiral follows a fixed set of steps. We go left, down, right, up.
         // For each of these, we just interate to the bounds, so we express each
         // one explicitly.
-        while (minRow < maxRow && minCol < maxCol) {
+        while (true) {
             // Go across the top
             for (int col = minCol; col <= maxCol; col++) {
                 System.out.println(arr[minRow][col]);
             }
+            if (minRow >= maxRow) break;
             minRow++;
 
             // Go down the right side
-            for (int row = minRow ; row <= maxRow; row++) {
+            for (int row = minRow; row <= maxRow; row++) {
                 System.out.println(arr[row][maxCol]);
             }
+            if (minCol >= maxCol) break;
             maxCol--;
 
             // Go across the bottom
             for (int col = maxCol; col >= minCol; col--) {
                 System.out.println(arr[maxRow][col]);
             }
+            if (minRow >= maxRow) break;
             maxRow--;
 
             // Go up the left side
             for (int row = maxRow; row >= minRow; row--) {
                 System.out.println(arr[row][minCol]);
             }
+            if (minCol >= maxCol) break;
             minCol++;
         }
     }

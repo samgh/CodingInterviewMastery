@@ -141,30 +141,34 @@ var printSpiral = function(arr) {
     // The spiral follows a fixed set of steps. We go left, down, right, up.
     // For each of these, we just interate to the bounds, so we express each
     // one explicitly.
-    while (minRow < maxRow && minCol < maxCol) {
+    while (true) {
         // Go across the top
         for (var col = minCol; col <= maxCol; col++) {
             console.log(arr[minRow][col]);
         }
         minRow++;
+        if (minRow >= maxRow) break;
 
         // Go down the right side
         for (var row = minRow ; row <= maxRow; row++) {
             console.log(arr[row][maxCol]);
         }
         maxCol--;
+        if (minCol >= maxCol) break;
 
         // Go across the bottom
         for (var col = maxCol; col >= minCol; col--) {
             console.log(arr[maxRow][col]);
         }
         maxRow--;
+        if (minRow >= maxRow) break;
 
         // Go up the left side
         for (var row = maxRow; row >= minRow; row--) {
             console.log(arr[row][minCol]);
         }
         minCol++;
+        if (minCol >= maxCol) break;
     }
 }
 
